@@ -1,9 +1,9 @@
-import ToggleTheme from "@/components/ToggleTheme";
+import ToggleTheme from '@/components/ToggleTheme'
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="flex">
       <ToggleTheme />
     </main>
-  );
+  )
 }
