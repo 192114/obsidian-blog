@@ -95,6 +95,10 @@ export default function ToggleTheme() {
     }
   }, [theme, themeHandle])
 
+  useEffect(() => {
+    themeHandle('auto')
+  }, [themeHandle])
+
   return (
     <div className="w-88px h-24px flex-y-center b-border rounded-4px cursor-pointer b-1px b-solid">
       <div
