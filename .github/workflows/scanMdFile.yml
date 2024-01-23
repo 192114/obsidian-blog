@@ -1,7 +1,7 @@
 name: scanMdFile
 
 permissions:
-  actions: [write, read]
+  actions: write
 
 on: 
   push:
