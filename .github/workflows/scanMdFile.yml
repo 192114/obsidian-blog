@@ -2,13 +2,14 @@ name: scanMdFile
 
 permissions:
   actions: write
+  contents: write
 
-on: 
+on:
   push:
     branches:
       - main
     paths:
-      - 'content/posts/**'
+      - "content/posts/**"
 
 jobs:
   scanMdFile:
@@ -25,16 +26,15 @@ jobs:
         run: |
           npm install
           npm install marked
-          
+
       - name: Run scanMdFile
         run: |
           node ./content/scripts/index.js
 
       - name: Push
-        run: | 
+        run: |
           git config user.name 192114
           git config user.email shadowSun192114@gmail.com
           git add .
           git commit -m "update posts json file"
           git push
-
