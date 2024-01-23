@@ -85,6 +85,6 @@ fs.readdir('./content/posts', (err, files) => {
       return
     }
 
-    console.log('写入成功', path.resolve(__dirname,'./content/posts.json'))
+    console.log('写入成功')
   })
 })
