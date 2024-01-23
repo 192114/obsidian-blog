@@ -63,7 +63,7 @@ function markedHandle(filePath) {
 const posts = []
 fs.readdir('../posts', (err, files) => {
   if (err) {
-    fs.writeFile('./error.txt', err, (err) => {})
+    console.log(err)
     return
   }
 
@@ -79,7 +79,7 @@ fs.readdir('../posts', (err, files) => {
 
   fs.writeFile('../posts.json', JSON.stringify(posts), (err) => {
     if (err) {
-      fs.writeFile('./error.txt', err, (err) => {})
+      console.log(err)
       return
     }
   })
