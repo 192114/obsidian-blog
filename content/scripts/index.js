@@ -61,7 +61,7 @@ function markedHandle(filePath) {
 
 // 读取所有文件
 const posts = []
-fs.readdir('../posts', (err, files) => {
+fs.readdir('./content/posts', (err, files) => {
   if (err) {
     console.log(err)
     return
@@ -72,12 +72,12 @@ fs.readdir('../posts', (err, files) => {
   for (let i = 0; i < fileMdList.length; i++) {
     const element = fileMdList[i]
 
-    const obj = markedHandle(`../posts/${element}`)
+    const obj = markedHandle(`./content/posts/${element}`)
     
     posts.push(obj)
   }
 
-  fs.writeFile('../posts.json', JSON.stringify(posts), (err) => {
+  fs.writeFile('./content/posts.json', JSON.stringify(posts), (err) => {
     if (err) {
       console.log(err)
       return
