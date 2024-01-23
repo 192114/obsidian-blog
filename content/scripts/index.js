@@ -63,7 +63,7 @@ function markedHandle(filePath) {
 const posts = []
 fs.readdir('./content/posts', (err, files) => {
   if (err) {
-    console.log(err)
+    console.error(err)
     return
   }
 
@@ -77,10 +77,14 @@ fs.readdir('./content/posts', (err, files) => {
     posts.push(obj)
   }
 
+  console.log(posts)
+  
   fs.writeFile('./content/posts.json', JSON.stringify(posts), (err) => {
     if (err) {
-      console.log(err)
+      console.error(err)
       return
     }
+
+    console.log('写入成功', path.resolve(__dirname,'./content/posts.json'))
   })
 })
