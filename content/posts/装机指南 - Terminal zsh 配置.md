@@ -1,7 +1,8 @@
 ---  
 date: 2024-12-16  
 series: Mac装机  
-tags:   
+tags:  
+  - computer  
 title: 装机指南 - Terminal zsh 配置  
 slug: mac-terminal  
 keywords: mac装机  
