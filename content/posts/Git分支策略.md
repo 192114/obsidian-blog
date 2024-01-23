@@ -2,8 +2,7 @@
 date: 2024-01-19  
 series: 其他  
 tags:  
-  - 标签1  
-  - 标签2  
+  - git  
 title: Git分支策略  
 slug: git-branch-strategy  
 keywords: git branch strategy  
