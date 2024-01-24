@@ -86,10 +86,10 @@ fs.readdir('./content/posts', (err, files) => {
         list: [obj],
       })
     }
-    
+
     // 分别写入文章详情
     fs.writeFile(
-      `./content/posts/${obj.slug}.json`,
+      `./content/data/${obj.slug}.json`,
       JSON.stringify(obj),
       (err) => {
         if (err) {
@@ -99,10 +99,8 @@ fs.readdir('./content/posts', (err, files) => {
       }
     )
   }
-
-  console.log(posts)
   
-  fs.writeFile('./content/posts/list.json', JSON.stringify(posts), (err) => {
+  fs.writeFile('./content/data/list.json', JSON.stringify(posts), (err) => {
     if (err) {
       console.error(err)
       return
