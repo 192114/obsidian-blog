@@ -59,6 +59,11 @@ function markedHandle(filePath) {
   }
 }
 
+// 如果文件夹不存在则创建
+if (!fs.existsSync('./content/data')) {
+  fs.mkdirSync('./content/data')
+}
+
 // 读取所有文件
 const posts = []
 fs.readdir('./content/posts', (err, files) => {
@@ -78,12 +83,14 @@ fs.readdir('./content/posts', (err, files) => {
 
     const currentByYear = posts.find((item) => item.year === year)
 
+    const { html, ...currentNoHtml } = obj
+
     if (currentByYear) {
-      currentByYear.list.push(obj)
+      currentByYear.list.push(currentNoHtml)
     } else {
       posts.push({
         year,
-        list: [obj],
+        list: [currentNoHtml],
       })
     }
 
@@ -99,7 +106,7 @@ fs.readdir('./content/posts', (err, files) => {
       }
     )
   }
-  
+
   fs.writeFile('./content/data/list.json', JSON.stringify(posts), (err) => {
     if (err) {
       console.error(err)
