@@ -73,13 +73,36 @@ fs.readdir('./content/posts', (err, files) => {
     const element = fileMdList[i]
 
     const obj = markedHandle(`./content/posts/${element}`)
+
+    const year = new Date(obj.date).getFullYear()
+
+    const currentByYear = posts.find((item) => item.year === year)
+
+    if (currentByYear) {
+      currentByYear.list.push(obj)
+    } else {
+      posts.push({
+        year,
+        list: [obj],
+      })
+    }
     
-    posts.push(obj)
+    // 分别写入文章详情
+    fs.writeFile(
+      `./content/posts/${obj.slug}.json`,
+      JSON.stringify(obj),
+      (err) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+      }
+    )
   }
 
   console.log(posts)
   
-  fs.writeFile('./content/posts.json', JSON.stringify(posts), (err) => {
+  fs.writeFile('./content/posts/list.json', JSON.stringify(posts), (err) => {
     if (err) {
       console.error(err)
       return
