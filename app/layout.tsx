@@ -4,8 +4,8 @@ import Header from '@/components/Header'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'shadow',
-  description: '',
+  title: 'shadow blog',
+  description: '个人博客',
 }
 
 export default function RootLayout({

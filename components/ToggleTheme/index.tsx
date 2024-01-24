@@ -100,7 +100,7 @@ export default function ToggleTheme() {
   }, [themeHandle])
 
   return (
-    <div className="w-88px h-24px flex-y-center b-border rounded-4px cursor-pointer b-1px b-solid">
+    <div className="w-88px h-24px flex-y-center b-border rounded-4px cursor-pointer b-1px b-solid overflow-hidden">
       <div
         className={clsx(
           'flex-1 h-full flex-center',
