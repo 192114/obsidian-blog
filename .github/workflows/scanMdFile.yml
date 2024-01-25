@@ -31,11 +31,11 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          npm install marked
-          npm install marked-highlight
-          npm install highlight.js
-          npm install dompurify
-          npm install jsdom
+          npm install marked -g
+          npm install marked-highlight -g
+          npm install highlight.js -g
+          npm install dompurify -g
+          npm install jsdom -g
 
       - name: Run scanMdFile
         run: |

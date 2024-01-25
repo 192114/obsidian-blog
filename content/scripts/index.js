@@ -133,7 +133,7 @@ fs.readdir('./content/posts', (err, files) => {
         const preTime = new Date(pre.date).getTime()
         const curTime = new Date(currentNoHtml.date).getTime()
 
-        if (preTime <= curTime) {
+        if (preTime >= curTime) {
           currentByYear.list.splice(len, 0, currentNoHtml)
           break
         } else {
