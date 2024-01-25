@@ -126,7 +126,22 @@ fs.readdir('./content/posts', (err, files) => {
 
     // 文章年份分类
     if (currentByYear) {
-      currentByYear.list.push(currentNoHtml)
+      let len = currentByYear.list.length
+      // const pre = currentByYear.list[lastIndex]
+      while(len >= 0) {
+        const pre = currentByYear.list[len - 1]
+        const preTime = new Date(pre.date).getTime()
+        const curTime = new Date(currentNoHtml.date).getTime()
+
+        if (preTime <= curTime) {
+          currentByYear.list.splice(len, 0, currentNoHtml)
+          break
+        } else {
+          len -= 1
+        }
+
+      }
+      // currentByYear.list.push(currentNoHtml)
     } else {
       posts.push({
         year,
