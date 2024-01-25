@@ -51,6 +51,7 @@ jobs:
 
       - name: Push
         run: |
-          git add .
-          git commit -m "update posts json file"
+          git add content
+          git add static
+          git commit -m "update publish file"
           git push
