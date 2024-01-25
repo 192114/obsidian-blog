@@ -34,11 +34,11 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pnpm install marked -g
-          pnpm install marked-highlight -g
-          pnpm install highlight.js -g
-          pnpm install dompurify -g
-          pnpm install jsdom -g
+          pnpm install marked
+          pnpm install marked-highlight
+          pnpm install highlight.js
+          pnpm install dompurify
+          pnpm install jsdom
 
       - name: Run scanMdFile
         run: |
