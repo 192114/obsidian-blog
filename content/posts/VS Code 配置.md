@@ -30,7 +30,7 @@ share: true
   
 ### 配置  
   
-```json  
+```JSON  
 {  
   "workbench.colorTheme": "One Dark Pro Mix",  
   "workbench.iconTheme": "vscode-icons",  
