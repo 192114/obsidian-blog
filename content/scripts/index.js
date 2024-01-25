@@ -127,8 +127,8 @@ fs.readdir('./content/posts', (err, files) => {
     // 文章年份分类
     if (currentByYear) {
       let len = currentByYear.list.length
-      // const pre = currentByYear.list[lastIndex]
-      while(len >= 0) {
+
+      while(len > 0) {
         const pre = currentByYear.list[len - 1]
         const preTime = new Date(pre.date).getTime()
         const curTime = new Date(currentNoHtml.date).getTime()
@@ -138,10 +138,15 @@ fs.readdir('./content/posts', (err, files) => {
           break
         } else {
           len -= 1
+          // 最小 加在最前面
+          if (len === 0) {
+            currentByYear.list.unshift(currentNoHtml)
+            break
+          }
         }
 
       }
-      // currentByYear.list.push(currentNoHtml)
+
     } else {
       posts.push({
         year,
