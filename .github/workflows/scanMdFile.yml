@@ -32,6 +32,10 @@ jobs:
         run: |
           npm install
           npm install marked
+          npm install marked-highlight
+          npm install highlight.js
+          npm install dompurify
+          npm install jsdom
 
       - name: Run scanMdFile
         run: |

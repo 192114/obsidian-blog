@@ -1,6 +1,37 @@
 const { marked } = require('marked')
+const { markedHighlight } = require('marked-highlight') 
+const hljs = require('highlight.js')
+const createDOMPurify = require('dompurify')
+const { JSDOM } = require('jsdom')
 const fs = require('fs')
 const path = require('path')
+
+const window = new JSDOM('').window
+const DOMPurify = createDOMPurify(window)
+
+let headingList = []
+
+// 设置锚点
+function markedSetHeadingId() {
+  return {
+    renderer: {
+      heading(text, level, raw, slugger) {
+        const id = `anchor-${text}`
+        const headingInfo = {text, level, id}
+        headingList.push(headingInfo)
+        return `<h${level} id="${id}">${text}</h${level}>\n`
+      }
+    }
+  }
+}
+marked.use(markedSetHeadingId())
+marked.use(markedHighlight({
+  langPrefix: 'hljs language-',
+  highlight(code, lang, info) {
+    const language = hljs.getLanguage(lang) ? lang : 'plaintext'
+    return hljs.highlight(code, { language }).value
+  }
+}))
 
 function markedHandle(filePath) {
   const content = fs.readFileSync(filePath, 'utf8')
@@ -51,10 +82,15 @@ function markedHandle(filePath) {
     ...vNode.slice(firstHeadIndex + 1),
   ]
 
-  const html = marked.parser(realContent)
+  const htmlOrigin = marked.parser(realContent)
+  const html = DOMPurify.sanitize(htmlOrigin)
+  const heading = [...headingList]
+
+  headingList = []
 
   return {
     html,
+    heading,
     ...attributes,
   }
 }
@@ -74,6 +110,9 @@ fs.readdir('./content/posts', (err, files) => {
 
   const fileMdList = files.filter((item) => path.extname(item) === '.md')
 
+  // 所有tag标签及数量
+  const tagsNumber = {}
+
   for (let i = 0; i < fileMdList.length; i++) {
     const element = fileMdList[i]
 
@@ -83,8 +122,9 @@ fs.readdir('./content/posts', (err, files) => {
 
     const currentByYear = posts.find((item) => item.year === year)
 
-    const { html, ...currentNoHtml } = obj
+    const { html, heading, ...currentNoHtml } = obj
 
+    // 文章年份分类
     if (currentByYear) {
       currentByYear.list.push(currentNoHtml)
     } else {
@@ -93,6 +133,15 @@ fs.readdir('./content/posts', (err, files) => {
         list: [currentNoHtml],
       })
     }
+
+    // 文章标签分类数量
+    obj.tags.forEach((tag) => {
+      if (tagsNumber[tag]) {
+        tagsNumber[tag] += 1
+      } else {
+        tagsNumber[tag] = 1
+      }
+    })
 
     // 分别写入文章详情
     fs.writeFile(
@@ -113,6 +162,22 @@ fs.readdir('./content/posts', (err, files) => {
       return
     }
 
-    console.log('写入成功')
+    console.log('写入list.json成功')
+  })
+
+  const tagsNumberList = Object.entries(tagsNumber).map((item) => {
+    return {
+      name: item[0],
+      number: item[1],
+    }
+  })
+
+  fs.writeFile('./content/data/tags.json', JSON.stringify(tagsNumberList), (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+
+    console.log('写入tags.json成功')
   })
 })
