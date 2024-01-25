@@ -22,10 +22,11 @@ share: true
 所以，团队合作的分支看起来就像这样：  
   
 ![git-team.png](../../static/images/git-team.png)  
+  
 合并分支时，加上`--no-ff`参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而`fast forward`合并就看不出来曾经做过合并。从分支历史上就可以看出分支信息  
   
-``` shell  
-$ git merge --no-ff -m "merge with no-ff" dev  
+``` Bash  
+git merge --no-ff -m "merge with no-ff" dev  
 Merge made by the 'recursive' strategy.  
  readme.txt | 1 +  
  1 file changed, 1 insertion(+)  
@@ -39,7 +40,7 @@ Merge made by the 'recursive' strategy.
   
 当前分支功能还没完成，这时候就需要git提供的`stash`，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作。  
   
-```shell  
+``` Bash  
 git stash  
 Saved working directory and index state WIP on dev: f52c633 add merge  
   
@@ -58,7 +59,7 @@ git switch dev # 切换到开发分支
   
 用`git stash list`命令看看  
   
-``` shell  
+``` Bash  
 git stash list  
 stash@{0}: WIP on dev: f52c633 add merge  
 ```  
@@ -71,11 +72,11 @@ stash@{0}: WIP on dev: f52c633 add merge
   
 Git专门提供了一个`cherry-pick`命令，让我们能复制一个特定的提交到当前分支。  
   
-``` shell  
+``` Bash  
 git branch  
 * dev  
   master  
-$ git cherry-pick 4c805e2  
+git cherry-pick 4c805e2  
 [master 1d4b803] fix bug 101  
  1 file changed, 1 insertion(+), 1 deletion(-)  
 ```  
@@ -88,13 +89,15 @@ $ git cherry-pick 4c805e2
 添加一个新功能时，你肯定不希望因为一些实验性质的代码，把主分支搞乱了，所以，每添加一个新功能，最好新建一个feature分支，在上面开发，完成后，合并，最后，删除该feature分支。  
   
 创建新特性分支  
-``` shell  
+  
+``` Bash  
 git switch -c feature-vulcan  
 Switched to a new branch 'feature-vulcan'  
 ```  
   
 提交分支  
-``` shell  
+  
+``` Bash  
 git add vulcan.py  
   
 git status  
@@ -111,13 +114,14 @@ git commit -m "add feature vulcan"
 ```  
   
 切回开发分支  
-``` shell  
+  
+``` Bash  
 git switch dev  
 ```  
   
 如果一切正常，可以使用`git merge feature-vulcan`合并，如果不需要该特性就可以`git branch -D feature-vulcan` 删除该分支  
   
-``` shell  
+``` Bash  
 git branch -d feature-vulcan  
 error: The branch 'feature-vulcan' is not fully merged.  
 If you are sure you want to delete it, run 'git branch -D feature-vulcan'.  
@@ -138,14 +142,14 @@ If you are sure you want to delete it, run 'git branch -D feature-vulcan'.
   
 要查看远程库的信息，用`git remote`：  
   
-``` shell  
+``` Bash  
 git remote  
 origin  
 ```  
   
 或者，用`git remote -v`显示更详细的信息：  
   
-``` shell  
+``` Bash  
 git remote -v  
 origin  git@github.com:michaelliao/learngit.git (fetch)  
 origin  git@github.com:michaelliao/learngit.git (push)  
@@ -155,7 +159,7 @@ origin  git@github.com:michaelliao/learngit.git (push)
   
 推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上。  
   
-``` shell  
+``` Bash  
 git push origin dev # 推送到dev分支  
   
 git push origin master # 推送到住分支  
@@ -171,7 +175,7 @@ git push origin master # 推送到住分支
   
 多人协作时，大家都会往`master`和`dev`分支上推送各自的修改。  
   
-``` shell  
+``` Bash  
 git clone git@github.com:michaelliao/learngit.git  
 Cloning into 'learngit'...  
 remote: Counting objects: 40, done.  
@@ -185,14 +189,14 @@ Resolving deltas: 100% (14/14), done.
   
 要在`dev`分支上开发，就必须创建远程`origin`的`dev`分支到本地，于是他用这个命令创建本地`dev`分支：  
   
-```  
-$ git checkout -b dev origin/dev  
+``` Bash  
+git checkout -b dev origin/dev  
 ```  
   
 现在，就可以在`dev`上继续修改，然后，把`dev`分支`push`到远程：  
   
-``` shell  
-$ git push origin dev  
+``` Bash  
+git push origin dev  
 Counting objects: 3, done.  
 Delta compression using up to 4 threads.  
 Compressing objects: 100% (2/2), done.  

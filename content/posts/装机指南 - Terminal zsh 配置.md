@@ -13,13 +13,13 @@ share: true
   
 ### 安装 [Homebrew](https://brew.sh/)  
   
-``` shell  
+``` Bash  
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
 ```  
   
 ### 配置zsh（使用mac terminal）  
   
-``` shell  
+``` Bash  
 # ~/.zshenv  
 // 将homebrew写入环境变量  
 eval "$(/usr/local/bin/brew shellenv)"  
@@ -37,11 +37,11 @@ zsh常见配置文件
     
 ### zsh插件管理 [zinit](https://github.com/zdharma-continuum/zinit#manual)   
    
-``` shell  
+``` Bash  
  brew install zinit  
 ```  
   
-```shell  
+``` Bash  
 # .zshrc file  
 ### Added by Zinit's installer  
   
@@ -81,7 +81,7 @@ zinit 语法说明
 - [zsh-users/zsh-completions](https://github.com/zsh-users/zsh-completions) 补全 zsh 语法  
 - [zsh-users/zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) 建议 提示之前的输入值  
 - [eza](https://github.com/eza-community/eza) 更好的ls 命令  
-```shell  
+``` Bash  
 brew install eza  
 # ~/.zshrc  
 # eza 别名  
@@ -108,7 +108,7 @@ DISABLE_LS_COLORS=true
   
 ```  
 - [bat](https://github.com/sharkdp/bat/blob/master/doc/README-zh.md) 类似cat 但有语法高亮  
-```shell  
+``` Bash  
 brew install bat  
   
 #命令  
@@ -121,7 +121,7 @@ bat /example/z.js -r 16 #显示文件 从第16行显示
 # `bat --list-themes` 一份语法高亮主题的清单  
 ```  
 - [ripgrep](https://github.com/BurntSushi/ripgrep) 命令行搜索工具  
-```shell  
+``` Bash  
 brew install ripgrep  
   
 #命令  
@@ -163,14 +163,14 @@ web:*.{html,css,js}*
 5. 点击使用主题  
   
 ### 安装字体  
-```shell  
+``` Bash  
 brew tap homebrew/cask-fonts  
 brew install font-hack-nerd-font  
 ```  
 - terminal 描述文件 文本处切换字体   
 - vscode fontfamily 配置 字体 'Hack Nerd Font Mono' （terminal设置字体同理）  
 ### 完整.zshrc  
-```shell  
+``` Bash  
 ### Added by Zinit's installer  
 source "/usr/local/opt/zinit/zinit.zsh"  
 autoload -Uz _zinit  
