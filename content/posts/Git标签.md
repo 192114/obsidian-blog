@@ -24,21 +24,21 @@ share: true
   
 Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针（跟分支很像对不对？但是分支可以移动，标签不能移动），所以，创建和删除标签都是瞬间完成的。  
   
-``` shell  
+``` Bash  
 git tag v1.0 # 打标签  
 ```  
   
-``` shell  
+``` Bash  
 git tag v0.9 f52c633  
 ```  
   
-``` shell  
+``` Bash  
 git tag -a v0.1 -m "version 0.1 released" 1094adb  
 ```  
   
 查看某个标签的详细信息 `git show <tagname>`  
   
-``` shell  
+``` Bash  
 git show v0.9  
 commit f52c63349bc3c1593499807e5c8e972b82c8f286 (tag: v0.9)  
 Author: Michael Liao <askxuefeng@gmail.com>  
@@ -51,19 +51,22 @@ diff --git a/readme.txt b/readme.txt
 ```  
   
 查看标签  
-``` shell  
+  
+``` Bash  
 git tag  
 v1.0  
 ```  
   
 删除标签  
-``` shell  
+  
+``` Bash  
 git tag -d v0.1  
 Deleted tag 'v0.1' (was f15b0dd)  
 ```  
   
 推送某个标签到远程  
-``` shell  
+  
+``` Bash  
 git push origin v1.0  
 Total 0 (delta 0), reused 0 (delta 0)  
 To github.com:michaelliao/learngit.git  
@@ -71,7 +74,8 @@ To github.com:michaelliao/learngit.git
 ```  
   
 推送全部标签到远程  
-``` shell  
+  
+``` Bash  
 git push origin --tags  
 Total 0 (delta 0), reused 0 (delta 0)  
 To github.com:michaelliao/learngit.git  
@@ -82,7 +86,7 @@ To github.com:michaelliao/learngit.git
   
 前提是先删除本地的tag `git tag -d v1.0`  
   
-```shell  
+``` Bash  
 git push --delete origin prod1.0  
   
 To https://github.com/myrepos/prod.git  
@@ -90,7 +94,8 @@ To https://github.com/myrepos/prod.git
 ```  
   
 也可以用  
-```shell  
+  
+```Bash  
 git push origin :refs/tags/prod1.0  
   
 To https://github.com/myrepos/prod.git  

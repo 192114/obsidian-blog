@@ -13,7 +13,7 @@ share: true
   
 使用  
   
-```shell  
+``` Bash  
 git rebase 目标基础点  
 ```  
   
@@ -21,7 +21,7 @@ git rebase 目标基础点
   
 `rebase` 的意思是，给你的 `commit` 序列重新设置基础点（也就是父 `commit`）。展开来说就是，把你指定的 `commit` 以及它所在的 `commit` 串，以指定的目标 `commit` 为基础，依次重新提交一次。  
   
-```shell  
+``` Bash  
 git checkout branch1  
 git rebase master  
 ```  
@@ -32,7 +32,7 @@ git rebase master
   
 在 `rebase` 之后，记得切回 `master` 再 `merge` 一下，把 `master` 移到最新的 `commit`：  
   
-```shell  
+``` Bash  
 git checkout master   
   
 git merge branch1  

@@ -20,7 +20,7 @@ share: true
   
 一开始的时候，`master`分支是一条线，Git用`master`指向最新的提交，再用`HEAD`指向`master`，就能确定当前分支，以及当前分支的提交点：  
   
-```ascii  
+``` asciidoc  
                   HEAD  
                     │  
                     │  
@@ -38,7 +38,7 @@ share: true
   
 当我们创建新的分支，例如`dev`时，Git新建了一个指针叫`dev`，指向`master`相同的提交，再把`HEAD`指向`dev`，就表示当前分支在`dev`上：  
   
-```ascii  
+``` asciidoc  
                  master  
                     │  
                     │  
@@ -60,7 +60,7 @@ share: true
   
 不过，从现在开始，对工作区的修改和提交就是针对`dev`分支了，比如新提交一次后，`dev`指针往前移动一步，而`master`指针不变：  
   
-```ascii  
+``` asciidoc  
                  master  
                     │  
                     │  
@@ -80,7 +80,7 @@ share: true
   
 假如我们在`dev`上的工作完成了，就可以把`dev`合并到`master`上。Git怎么合并呢？最简单的方法，就是直接把`master`指向`dev`的当前提交，就完成了合并：  
   
-```ascii  
+``` asciidoc  
                            HEAD  
                              │  
                              │  
@@ -102,7 +102,7 @@ share: true
   
 合并完分支后，甚至可以删除`dev`分支。删除`dev`分支就是把`dev`指针给删掉，删掉后，我们就剩下了一条`master`分支：  
   
-```ascii  
+``` asciidoc  
                            HEAD  
                              │  
                              │  
@@ -122,23 +122,23 @@ share: true
   
 首先，我们创建`dev`分支，然后切换到`dev`分支：  
   
-```  
-$ git checkout -b dev  
+``` Bash  
+git checkout -b dev  
 Switched to a new branch 'dev'  
 ```  
   
 `git checkout`命令加上`-b`参数表示创建并切换，相当于以下两条命令：  
   
-```  
-$ git branch dev  
-$ git checkout dev  
+``` Bash  
+git branch dev  
+git checkout dev  
 Switched to branch 'dev'  
 ```  
   
 然后，用`git branch`命令查看当前分支：  
   
-```  
-$ git branch  
+``` Bash  
+git branch  
 * dev  
   master  
 ```  
@@ -147,23 +147,23 @@ $ git branch
   
 然后，我们就可以在`dev`分支上正常提交，比如对`readme.txt`做个修改，加上一行：  
   
-```  
+``` Bash  
 Creating a new branch is quick.  
 ```  
   
 然后提交：  
   
-```  
-$ git add readme.txt   
-$ git commit -m "branch test"  
+``` Bash  
+git add readme.txt   
+git commit -m "branch test"  
 [dev b17d20e] branch test  
  1 file changed, 1 insertion(+)  
 ```  
   
 现在，`dev`分支的工作完成，我们就可以切换回`master`分支：  
   
-```  
-$ git checkout master  
+``` Bash  
+git checkout master  
 Switched to branch 'master'  
 ```  
   
@@ -173,8 +173,8 @@ Switched to branch 'master'
   
 现在，我们把`dev`分支的工作成果合并到`master`分支上：  
   
-```  
-$ git merge dev  
+``` Bash  
+git merge dev  
 Updating d46f35e..b17d20e  
 Fast-forward  
  readme.txt | 1 +  
@@ -189,15 +189,15 @@ Fast-forward
   
 合并完成后，就可以放心地删除`dev`分支了：  
   
-```  
-$ git branch -d dev  
+``` Bash  
+git branch -d dev  
 Deleted branch dev (was b17d20e).  
 ```  
   
 删除后，查看`branch`，就只剩下`master`分支了：  
   
-```  
-$ git branch  
+``` Bash  
+git branch  
 * master  
 ```  
   
@@ -211,14 +211,14 @@ $ git branch
   
 创建并切换到新的`dev`分支，可以使用：  
   
-```  
-$ git switch -c dev  
+``` Bash  
+git switch -c dev  
 ```  
   
 直接切换到已有的`master`分支，可以使用：  
   
-```  
-$ git switch master  
+``` Bash  
+git switch master  
 ```  
   
 使用新的`git switch`命令，比`git checkout`要更容易理解。
