@@ -21,8 +21,7 @@ share: true
   
 所以，团队合作的分支看起来就像这样：  
   
-![git-br-policy](https://www.liaoxuefeng.com/files/attachments/919023260793600/0)  
-  
+![git-team.png](../../static/images/git-team.png)  
 合并分支时，加上`--no-ff`参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而`fast forward`合并就看不出来曾经做过合并。从分支历史上就可以看出分支信息  
   
 ``` shell  
@@ -32,9 +31,9 @@ Merge made by the 'recursive' strategy.
  1 file changed, 1 insertion(+)  
 ```  
   
-![git-no-ff-mode](https://www.liaoxuefeng.com/files/attachments/919023225142304/0)  
+![git-no-ff.png](../../static/images/git-no-ff.png)  
   
-#### bug的处理  
+### bug的处理  
   
 每个bug都可以通过一个新的临时分支来修复，修复后，合并分支，然后将临时分支删除。  
   
@@ -84,7 +83,7 @@ $ git cherry-pick 4c805e2
 *`cherry-pick`和`git stash`步骤问题：*  
 是回到dev分支后，先 git cherry-pick 4c805e2 再 git stash pop就可以了  
   
-#### 新特性开发  
+### 新特性开发  
   
 添加一个新功能时，你肯定不希望因为一些实验性质的代码，把主分支搞乱了，所以，每添加一个新功能，最好新建一个feature分支，在上面开发，完成后，合并，最后，删除该feature分支。  
   
@@ -126,7 +125,7 @@ If you are sure you want to delete it, run 'git branch -D feature-vulcan'.
   
 `-D` 是强制删除，使用`-d`则是给出提示当前分支未合并，不能删除。  
   
-#### 团队协作  
+### 团队协作  
   
 - 查看远程库信息，使用`git remote -v`；  
 - 本地新建的分支如果不推送到远程，对其他人就是不可见的；  
@@ -168,7 +167,7 @@ git push origin master # 推送到住分支
 - bug分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；  
 - feature分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。  
   
-#### 抓取分支  
+### 抓取分支  
   
 多人协作时，大家都会往`master`和`dev`分支上推送各自的修改。  
   
