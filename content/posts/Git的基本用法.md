@@ -1,5 +1,5 @@
 ---  
-date: 2024-12-25  
+date: 2023-12-25  
 series: 其他  
 tags:  
   - git  
@@ -69,14 +69,14 @@ index 46d49bf..9247db6 100644
 +Git is a distributed version control system.  
  Git is free software.  
 ```  
-#### 回退版本  
+### 回退版本  
   
 首先，Git必须知道当前版本是哪个版本，在Git中，用`HEAD`表示当前版本，也就是最新的提交`1094adb...`（注意我的提交ID和你的肯定不一样），上一个版本就是`HEAD^`，上上一个版本就是`HEAD^^`，当然往上100个版本写100个`^`比较容易数不过来，所以写成`HEAD~100`。  
   
 - `git reset --hard HEAD^` 回退到上一个版本   
 - `git reset --hard commitId` 回退到指定commit，说重置应该更为准确  
   
-#### 撤销修改  
+### 撤销修改  
   
 ``` shell  
 git checkout -- readme.txt  
@@ -101,8 +101,9 @@ git checkout -- readme.txt
 - 情况2：**文件已add，未commit**。撤销操作：`git restore --staged <file>`。结果：**暂存区文件回退，工作区文件未回退，如需继续回退，操按情况1操作。**  
 - 情况3：**文件已add，已commit**。撤销操作：**git reset --hard commit_id**。结果：**工作区文件、暂存区文件、本地仓库都回退**  
   
-#### 远程仓库配置  
-##### 生成公钥私钥  
+### 远程仓库配置  
+#### 生成公钥私钥  
+  
 ``` shell  
 ssh-keygen -t rsa -C "youremail@example.com"  
 ```  
@@ -130,7 +131,8 @@ Branch 'master' set up to track remote branch 'master' from 'origin'.
   
 由于远程库是空的，我们第一次推送`master`分支时，加上了`-u`参数，Git不但会把本地的`master`分支内容推送的远程新的`master`分支，还会把本地的`master`分支和远程的`master`分支关联起来，在以后的推送或者拉取时就可以简化命令。  
   
-##### 删除远程库  
+#### 删除远程库  
+  
 ```shell  
 git remote -v  
 origin  git@github.com:192114/git-practice.git (fetch)  
@@ -141,7 +143,8 @@ origin  git@github.com:192114/git-practice.git (push)
 git remote rm origin  
 ```  
   
-##### 从远端克隆  
+#### 从远端克隆  
+  
 ``` shell  
 git clone git@github.com:192114/gitskills.git  
 Cloning into 'gitskills'...  

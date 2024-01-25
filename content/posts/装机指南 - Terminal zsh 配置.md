@@ -1,5 +1,5 @@
 ---  
-date: 2024-12-16  
+date: 2023-12-16  
 series: Mac装机  
 tags:  
   - computer  
@@ -11,13 +11,13 @@ lastmod:
 share: true  
 ---  
   
-##### 安装 [Homebrew](https://brew.sh/)  
+### 安装 [Homebrew](https://brew.sh/)  
   
 ``` shell  
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
 ```  
   
-##### 配置zsh（使用mac terminal）  
+### 配置zsh（使用mac terminal）  
   
 ``` shell  
 # ~/.zshenv  
@@ -28,12 +28,14 @@ eval "$(/usr/local/bin/brew shellenv)"
 eval "$(zoxide init zsh --cmd cd)"  
   
 ```  
+  
 zsh常见配置文件  
 1. .zshenv 通常放环境变量 任何时候都会被加载  
 2. .zshrc 交互式终端可用   
+  
 加载顺序：`.zshenv `-> `.zprofile` if login ->` .zshrc` if interactive -> `.zlogin` if login -> `.zlogout`  
     
-##### zsh插件管理 [zinit](https://github.com/zdharma-continuum/zinit#manual)   
+### zsh插件管理 [zinit](https://github.com/zdharma-continuum/zinit#manual)   
    
 ``` shell  
  brew install zinit  
@@ -153,21 +155,21 @@ web:*.{html,css,js}*
 --smart-case  
 ```  
   
-##### 修改terminal主题配色  
+### 修改terminal主题配色  
 1. 左上角终端选偏好设置  
 2. 点击描述文件  
 3. [themes](https://github.com/lysyi3m/macos-terminal-themes)下载主题  
 4. 导入下载的主题  
 5. 点击使用主题  
   
-##### 安装字体  
+### 安装字体  
 ```shell  
 brew tap homebrew/cask-fonts  
 brew install font-hack-nerd-font  
 ```  
 - terminal 描述文件 文本处切换字体   
 - vscode fontfamily 配置 字体 'Hack Nerd Font Mono' （terminal设置字体同理）  
-##### 完整.zshrc  
+### 完整.zshrc  
 ```shell  
 ### Added by Zinit's installer  
 source "/usr/local/opt/zinit/zinit.zsh"  
