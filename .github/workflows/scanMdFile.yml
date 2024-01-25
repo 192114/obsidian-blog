@@ -28,14 +28,17 @@ jobs:
         with:
           node-version: 20.11.0
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Install Dependencies
         run: |
-          npm install
-          npm install marked -g
-          npm install marked-highlight -g
-          npm install highlight.js -g
-          npm install dompurify -g
-          npm install jsdom -g
+          pnpm install marked -g
+          pnpm install marked-highlight -g
+          pnpm install highlight.js -g
+          pnpm install dompurify -g
+          pnpm install jsdom -g
 
       - name: Run scanMdFile
         run: |
