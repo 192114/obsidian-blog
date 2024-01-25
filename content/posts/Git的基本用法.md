@@ -17,7 +17,8 @@ share: true
 - `git add [file1 file2] / .` 添加到暂存区  
 - `git commit -m [message]` 将当前staged修改提交`--amend`就会生成一条新的commit替换了原commit  
 - `git status` 查看状态  
-``` shell  
+  
+``` Bash  
 git status  
 On branch master  
 Changes not staged for commit:  
@@ -33,8 +34,10 @@ Untracked files:
   
 no changes added to commit (use "git add" and/or "git commit -a")  
 ```  
+  
 - `git log` 查看历史记录 `--pretty=oneline` 加上他一行展示信息  
-``` shell  
+  
+``` Bash  
 git log  
 commit e475afc93c209a690c39c13a46716e8fa000c366 (HEAD -> master)  
 Author: Michael Liao <askxuefeng@gmail.com>  
@@ -48,8 +51,10 @@ Date:   Fri May 18 20:59:18 2018 +0800
   
     wrote a readme file  
 ```  
+  
 - `git reflog` 记录你的每一次命令  
-``` shell  
+  
+``` Bash  
 git reflog  
   
 e475afc HEAD@{1}: reset: moving to HEAD^  
@@ -57,8 +62,10 @@ e475afc HEAD@{1}: reset: moving to HEAD^
 e475afc HEAD@{3}: commit: add distributed  
 eaadf4e HEAD@{4}: commit (initial): wrote a readme file  
 ```  
+  
 - `git diff` 比对改动  
-``` shell  
+  
+``` Bash  
 git diff readme.txt   
 diff --git a/readme.txt b/readme.txt  
 index 46d49bf..9247db6 100644  
@@ -78,7 +85,7 @@ index 46d49bf..9247db6 100644
   
 ### 撤销修改  
   
-``` shell  
+``` Bash  
 git checkout -- readme.txt  
 ```  
   
@@ -104,7 +111,7 @@ git checkout -- readme.txt
 ### 远程仓库配置  
 #### 生成公钥私钥  
   
-``` shell  
+``` Bash  
 ssh-keygen -t rsa -C "youremail@example.com"  
 ```  
 用户目录下的`.ssh`目录，里面有`id_rsa`和`id_rsa.pub`两个文件，这两个就是SSH Key的秘钥对，`id_rsa`是私钥，不能泄露出去，`id_rsa.pub`是公钥，可以放心地告诉任何人。  
@@ -112,11 +119,14 @@ ssh-keygen -t rsa -C "youremail@example.com"
 登录github，“Account settings”，“SSH Keys”页面将公钥配置到gitbub中  
   
 将本地仓库关联远程仓库  
+  
 ``` shell  
 git remote add origin git@github.com:192114/git-practice.git  
 ```  
+  
 添加后，远程库的名字就是`origin`，这是Git默认的叫法，也可以改成别的，但是`origin`这个名字一看就知道是远程库。  
-``` shell  
+  
+``` Bash  
 git push -u origin master  
 Counting objects: 20, done.  
 Delta compression using up to 4 threads.  
@@ -133,19 +143,19 @@ Branch 'master' set up to track remote branch 'master' from 'origin'.
   
 #### 删除远程库  
   
-```shell  
+``` Bash  
 git remote -v  
 origin  git@github.com:192114/git-practice.git (fetch)  
 origin  git@github.com:192114/git-practice.git (push)  
 ```  
   
-``` shell  
+``` Bash  
 git remote rm origin  
 ```  
   
 #### 从远端克隆  
   
-``` shell  
+``` Bash  
 git clone git@github.com:192114/gitskills.git  
 Cloning into 'gitskills'...  
 remote: Counting objects: 3, done.  
