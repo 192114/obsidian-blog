@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-p-t-64px">
       <body className={clsx('bg-background text-text')}>
         <Header />
 
