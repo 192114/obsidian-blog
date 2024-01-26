@@ -1,5 +1,5 @@
 const { marked } = require('marked')
-const { markedHighlight } = require('marked-highlight') 
+const { markedHighlight } = require('marked-highlight')
 const hljs = require('highlight.js')
 const createDOMPurify = require('dompurify')
 const { JSDOM } = require('jsdom')
@@ -11,6 +11,23 @@ const DOMPurify = createDOMPurify(window)
 
 let headingList = []
 let isFirstH2Tag = false
+let minLevel = 1
+
+function checkSameLevel(current, targetList) {
+  if (!targetList || targetList.length === 0) {
+    targetList.push(current)
+  } else {
+    const lastIndex = targetList.length - 1
+    if (targetList[lastIndex].level < current.level) {
+      if (!targetList[lastIndex].children) {
+        targetList[lastIndex].children = []
+      }
+      checkSameLevel(current, targetList[lastIndex].children)
+    } else {
+      targetList.push(current)
+    }
+  }
+}
 
 // 设置锚点
 // 解析文章属性 文章属性用的是h2 标签包裹 解析第一个h2标签
@@ -20,32 +37,71 @@ function markedSetHeadingId() {
       preprocess: (markdown) => {
         headingList = []
         isFirstH2Tag = true
+        minLevel = 1
         return markdown
-      }
+      },
     },
     renderer: {
       heading(text, level, raw, slugger) {
         const id = `anchor-${text}`
-        const headingInfo = {text, level, id}
+        const headingInfo = { text, level, id }
+        // 默认为第一项
         if (level === 2 && isFirstH2Tag) {
           return ''
         }
         isFirstH2Tag = false
-        headingList.push(headingInfo)
-        return `<h${level} id="${id}">${text}</h${level}>\n`
-      }
-    }
+
+        /**
+         * 锚点规则 level 是 h 标签的 1 - 6
+         * 首次添加 并记录当前level为最小level
+         * 凡是level 小于等于最小level的均视为一级heading
+         * 大于最小level的均视为下级heading 进入递归调用
+         * 比较子集中的最后一项 level
+         * 小于等于该最后一项 level 则视为该级的heading
+         * 大于该最后一项 level 则进行递归调用
+         * 
+         * 同级别中可能存在多个级别的heading
+         * 使用时尽量保持规范 避免该问题 
+         *
+         */
+        if (headingList.length === 0) {
+          headingList.push(headingInfo)
+          minLevel = level
+        } else {
+          // 凡是出现大于最大level的heading 都作为第一层添加
+          if (level <= minLevel) {
+            headingList.push(headingInfo)
+          } else {
+            // 小于最大level 则和当前分支比较 查找当前分支 相同级别后添加
+            // 默认从最新项第二层开始
+            const lastIndex = headingList.length - 1
+            if (!headingList[lastIndex].children) {
+              headingList[lastIndex].children = []
+            }
+            const targetList = headingList[lastIndex].children
+            checkSameLevel(headingInfo, targetList)
+          }
+        }
+
+        return `<h${level} id="${id}">
+        <a href="#${id}" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+        ${text}
+        </h${level}>\n`
+      },
+    },
   }
-} 
+}
 
 marked.use(markedSetHeadingId())
-marked.use(markedHighlight({
-  langPrefix: 'hljs language-',
-  highlight(code, lang, info) {
-    const language = hljs.getLanguage(lang) ? lang : 'plaintext'
-    return hljs.highlight(code, { language }).value
-  }
-}))
+marked.use(
+  markedHighlight({
+    langPrefix: 'hljs language-',
+    highlight(code, lang, info) {
+      const language = hljs.getLanguage(lang) ? lang : 'plaintext'
+      return hljs.highlight(code, { language }).value
+    },
+  })
+)
 
 function markedHandle(filePath) {
   const content = fs.readFileSync(filePath, 'utf8')
@@ -134,8 +190,7 @@ fs.readdir('./content/posts', (err, files) => {
     // 文章年份分类
     if (currentByYear) {
       let len = currentByYear.list.length
-      // const pre = currentByYear.list[lastIndex]
-      while(len > 0) {
+      while (len > 0) {
         const pre = currentByYear.list[len - 1]
         const preTime = new Date(pre.date).getTime()
         const curTime = new Date(currentNoHtml.date).getTime()
@@ -150,7 +205,6 @@ fs.readdir('./content/posts', (err, files) => {
             break
           }
         }
-
       }
     } else {
       posts.push({
@@ -197,12 +251,16 @@ fs.readdir('./content/posts', (err, files) => {
     }
   })
 
-  fs.writeFile('./content/data/tags.json', JSON.stringify(tagsNumberList), (err) => {
-    if (err) {
-      console.error(err)
-      return
-    }
+  fs.writeFile(
+    './content/data/tags.json',
+    JSON.stringify(tagsNumberList),
+    (err) => {
+      if (err) {
+        console.error(err)
+        return
+      }
 
-    console.log('写入tags.json成功')
-  })
+      console.log('写入tags.json成功')
+    }
+  )
 })
