@@ -63,6 +63,10 @@ a:hover {
   color: var(--active);
 }
 
+html.dark img {
+  filter: brightness(.8) contrast(1.2); 
+}
+
 /* 实现切换明暗主题 的动效 */
 ::view-transition-old(root),
 ::view-transition-new(root) {
