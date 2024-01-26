@@ -11,8 +11,22 @@ interface IArticle {
   share: 'true' | 'false'
 }
 
+interface ITagsItem {
+  name: string
+  number: number
+}
+
+type ITags = ITagsItem[]
+
+interface IHeadingItem {
+  text: string
+  level: number
+  id: string
+}
+
 interface IArticleInfo extends IArticle {
   html: string
+  heading: IHeadingItem[]
 }
 
 interface IPostItem {
