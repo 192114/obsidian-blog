@@ -14,6 +14,8 @@ export default function Header() {
     }
 
     window.addEventListener('scroll', scrollListener)
+    // 默认检测是否滚动
+    scrollListener()
     return () => {
       window.removeEventListener('scroll', scrollListener)
     }
