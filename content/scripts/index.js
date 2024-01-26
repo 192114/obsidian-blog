@@ -10,20 +10,34 @@ const window = new JSDOM('').window
 const DOMPurify = createDOMPurify(window)
 
 let headingList = []
+let isFirstH2Tag = false
 
 // 设置锚点
+// 解析文章属性 文章属性用的是h2 标签包裹 解析第一个h2标签
 function markedSetHeadingId() {
   return {
+    hooks: {
+      preprocess: (markdown) => {
+        headingList = []
+        isFirstH2Tag = true
+        return markdown
+      }
+    },
     renderer: {
       heading(text, level, raw, slugger) {
         const id = `anchor-${text}`
         const headingInfo = {text, level, id}
+        if (level === 2 && isFirstH2Tag) {
+          return ''
+        }
+        isFirstH2Tag = false
         headingList.push(headingInfo)
         return `<h${level} id="${id}">${text}</h${level}>\n`
       }
     }
   }
-}
+} 
+
 marked.use(markedSetHeadingId())
 marked.use(markedHighlight({
   langPrefix: 'hljs language-',
@@ -35,6 +49,10 @@ marked.use(markedHighlight({
 
 function markedHandle(filePath) {
   const content = fs.readFileSync(filePath, 'utf8')
+
+  const htmlOrigin = marked.parse(content)
+  const html = DOMPurify.sanitize(htmlOrigin)
+  const heading = [...headingList]
 
   const vNode = marked.lexer(content)
 
@@ -77,17 +95,6 @@ function markedHandle(filePath) {
     attributes[key.trim()] = value.trim()
   })
 
-  const realContent = [
-    ...vNode.slice(0, firstHeadIndex),
-    ...vNode.slice(firstHeadIndex + 1),
-  ]
-
-  const htmlOrigin = marked.parser(realContent)
-  const html = DOMPurify.sanitize(htmlOrigin)
-  const heading = [...headingList]
-
-  headingList = []
-
   return {
     html,
     heading,
@@ -127,26 +134,20 @@ fs.readdir('./content/posts', (err, files) => {
     // 文章年份分类
     if (currentByYear) {
       let len = currentByYear.list.length
-
+      // const pre = currentByYear.list[lastIndex]
       while(len > 0) {
         const pre = currentByYear.list[len - 1]
         const preTime = new Date(pre.date).getTime()
         const curTime = new Date(currentNoHtml.date).getTime()
 
-        if (preTime >= curTime) {
+        if (preTime <= curTime) {
           currentByYear.list.splice(len, 0, currentNoHtml)
           break
         } else {
           len -= 1
-          // 最小 加在最前面
-          if (len === 0) {
-            currentByYear.list.unshift(currentNoHtml)
-            break
-          }
         }
 
       }
-
     } else {
       posts.push({
         year,
