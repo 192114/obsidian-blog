@@ -1,0 +1,154 @@
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em
+}
+code.hljs {
+  padding: 3px 5px
+}
+
+html.light .hljs {
+  --text-color: #24292e;
+  --bg-color: #ffffff;
+  --text-var-color: #d73a49;
+  --text-func-color: #6f42c1;
+  --text-attr-color: #005cc5;
+  --text-string-color: #032f62;
+  --text-symbol-color: #e36209;
+  --text-comment-color: #6a737d;
+  --text-name-color: #22863a;
+  --text-subst-color: #24292e;
+  --text-section-color: #005cc5;
+  --text-bullet-color: #735c0f;
+  --text-ellipsis-color: #24292e;
+  --text-strong-color: #24292e;
+  --text-addition-color: #22863a;
+  --bg-addition-color: #f0fff4;
+  --text-deletion-color: #b31d28;
+  --bg-deletion-color: #ffeef0;
+}
+
+html.dark .hljs {
+  --text-color: #c9d1d9;
+  --bg-color: #0d1117;
+  --text-var-color: #ff7b72;
+  --text-func-color: #d2a8ff;
+  --text-attr-color: #79c0ff;
+  --text-string-color: #a5d6ff;
+  --text-symbol-color: #ffa657;
+  --text-comment-color: #8b949e;
+  --text-name-color: #7ee787;
+  --text-subst-color: #c9d1d9;
+  --text-section-color: #1f6feb;
+  --text-bullet-color: #f2cc60;
+  --text-ellipsis-color: #c9d1d9;
+  --text-strong-color: #c9d1d9;
+  --text-addition-color: #aff5b4;
+  --bg-addition-color: #033a16;
+  --text-deletion-color: #ffdcd7;
+  --bg-deletion-color: #67060c;
+
+}
+
+.hljs {
+  color: var(--text-color);
+  background: var(--bg-color);
+}
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta .hljs-keyword,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-variable.language_ {
+  /* prettylights-syntax-keyword */
+  color: var(--text-var-color);
+}
+.hljs-title,
+.hljs-title.class_,
+.hljs-title.class_.inherited__,
+.hljs-title.function_ {
+  /* prettylights-syntax-entity */
+  color: var(--text-func-color);
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-literal,
+.hljs-meta,
+.hljs-number,
+.hljs-operator,
+.hljs-variable,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-selector-id {
+  /* prettylights-syntax-constant */
+  color: var(--text-attr-color);
+}
+.hljs-regexp,
+.hljs-string,
+.hljs-meta .hljs-string {
+  /* prettylights-syntax-string */
+  color: var(--text-string-color);
+}
+.hljs-built_in,
+.hljs-symbol {
+  /* prettylights-syntax-variable */
+  color: var(--text-symbol-color);
+}
+.hljs-comment,
+.hljs-code,
+.hljs-formula {
+  /* prettylights-syntax-comment */
+  color: var(--text-comment-color);
+}
+.hljs-name,
+.hljs-quote,
+.hljs-selector-tag,
+.hljs-selector-pseudo {
+  /* prettylights-syntax-entity-tag */
+  color: var(--text-name-color);
+}
+.hljs-subst {
+  /* prettylights-syntax-storage-modifier-import */
+  color: var(--text-subst-color);
+}
+.hljs-section {
+  /* prettylights-syntax-markup-heading */
+  color: var(--text-section-color);
+  font-weight: bold
+}
+.hljs-bullet {
+  /* prettylights-syntax-markup-list */
+  color: var(--text-bullet-color);
+}
+.hljs-emphasis {
+  /* prettylights-syntax-markup-italic */
+  color: var(--text-ellipsis-color);
+  font-style: italic
+}
+.hljs-strong {
+  /* prettylights-syntax-markup-bold */
+  color: var(--text-strong-color);
+  font-weight: bold
+}
+.hljs-addition {
+  /* prettylights-syntax-markup-inserted */
+  color: var(--text-addition-color);
+  background-color: var(--bg-addition-color);
+}
+.hljs-deletion {
+  /* prettylights-syntax-markup-deleted */
+  color: var(--text-deletion-color);
+  background-color: var(--bg-deletion-color);
+}
+.hljs-char.escape_,
+.hljs-link,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
+}
+
+
