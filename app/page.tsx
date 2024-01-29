@@ -2,10 +2,7 @@
 import dynamic, { DynamicOptions } from 'next/dynamic'
 
 const PostList = dynamic<unknown>(
-  (() => import('@/components/PostList')) as DynamicOptions<unknown>,
-  {
-    loading: () => <div>1</div>,
-  }
+  (() => import('@/components/PostList')) as DynamicOptions<unknown>
 )
 
 export default async function Home() {
