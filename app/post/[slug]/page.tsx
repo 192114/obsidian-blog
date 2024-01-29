@@ -1,11 +1,13 @@
 import { readFile } from 'fs'
 import clsx from 'clsx'
 
+import Tag from '@/components/Tag'
+import Forward from '@/components/Forward'
+
 import type { Metadata } from 'next'
 
 import '@/styles/markdown.css'
 import '@/styles/highlight.css'
-import Tag from '@/components/Tag'
 
 interface ParamType {
   params: {
@@ -53,17 +55,11 @@ export async function generateMetadata({
 export default async function Article({ params }: ParamType) {
   const articleInfo = await getPostInfo(params.slug)
 
-  if (!articleInfo) {
-    return null
-  }
-
-  return (
-    <>
-      <aside className="fixed left-20px top-72px bottom-0px lg:w-160px <lg:hidden xl:w-280px opacity-30 text-text-weak hover:text-text hover:cursor-pointer hover:opacity-100 transition group">
-        <i className="i-lucide-text text-2xl ml-20px"></i>
-
-        <ul className="mt-20px list-none text-sm group-hover:block block pl-20px">
-          {articleInfo?.heading?.map((item) => (
+  const renderHeadAnchor = (headList: IHeadingItem[]) => {
+    return (
+      <ul className="list-none text-xs pl-20px mt-10px">
+        {headList.map((item) => {
+          return (
             <li key={item.id} className="mb-10px slide-enter">
               <a
                 href={`#${item.id}`}
@@ -73,9 +69,26 @@ export default async function Article({ params }: ParamType) {
               >
                 {item.text}
               </a>
+
+              {item.children && renderHeadAnchor(item.children)}
             </li>
-          ))}
-        </ul>
+          )
+        })}
+      </ul>
+    )
+  }
+
+  if (!articleInfo) {
+    return null
+  }
+
+  return (
+    <>
+      <aside className="fixed left-20px top-72px bottom-0px lg:w-160px <lg:hidden xl:w-280px opacity-30 text-text-weak hover:text-text hover:cursor-pointer hover:opacity-100 transition group">
+        <i className="i-lucide-text text-2xl ml-20px"></i>
+        <div className="mt-20px group-hover:block hidden">
+          {renderHeadAnchor(articleInfo.heading)}
+        </div>
       </aside>
       <main className="max-w-650px mx-auto mt-80px slide-enter">
         <h1 className="mb-10px">{articleInfo?.title}</h1>
@@ -98,6 +111,8 @@ export default async function Article({ params }: ParamType) {
           className="markdown-body pb-60px"
           data-theme="dark"
         />
+
+        <Forward />
       </main>
     </>
   )

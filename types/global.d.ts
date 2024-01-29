@@ -22,6 +22,7 @@ interface IHeadingItem {
   text: string
   level: number
   id: string
+  children?: IHeadingItem[]
 }
 
 interface IArticleInfo extends IArticle {
