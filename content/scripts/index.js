@@ -123,6 +123,8 @@ function markedHandle(filePath) {
     (item) => item.text.indexOf('tags:') !== -1
   )
 
+  const otherTokens = vNode.filter((_, i) => i !== firstHeadIndex)
+
   const tags = []
   let tagsLastIndex = 0
   for (let j = tagsStartIndex + 1; j < textList.length; j++) {
@@ -154,6 +156,7 @@ function markedHandle(filePath) {
   return {
     html,
     heading,
+    otherTokens,
     ...attributes,
   }
 }
@@ -186,7 +189,7 @@ fs.readdir('./content/posts', (err, files) => {
 
     const currentByYear = posts.find((item) => item.year === year)
 
-    const { html, heading, ...currentNoHtml } = obj
+    const { html, heading, otherTokens, ...currentNoHtml } = obj
 
     // 文章年份分类
     if (currentByYear) {
@@ -224,12 +227,12 @@ fs.readdir('./content/posts', (err, files) => {
     })
 
     // 记录所有文章 用于搜索
-    allList.push(obj)
+    allList.push({otherTokens, ...currentNoHtml})
 
     // 分别写入文章详情
     fs.writeFile(
       `./content/data/${obj.slug}.json`,
-      JSON.stringify(obj),
+      JSON.stringify({ html, heading, ...currentNoHtml }),
       (err) => {
         if (err) {
           console.error(err)
