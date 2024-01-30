@@ -1,9 +1,7 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 
 export default function CanvasBackground() {
-  const count = useRef(0)
-
   const initCanvas = () => {
     const boxWidth = window.innerWidth
     const boxHeight = window.innerHeight
@@ -46,7 +44,7 @@ export default function CanvasBackground() {
 
 
   useEffect(() => {
-    const { canvas, ctx, boxWidth, boxHeight } = initCanvas()
+    const { ctx, boxWidth, boxHeight } = initCanvas()
   
     ctx.strokeStyle='#88888825'
     ctx.lineWidth = 1
@@ -67,8 +65,7 @@ export default function CanvasBackground() {
 
       const rad1 = rad + Math.random() * rad15
       const rad2 = rad - Math.random() * rad15
-  
-      if (lineX < -100 || lineX > boxWidth + 100 || lineY < -100 || lineY > boxHeight + 100) {
+      if (lineX < -50 || lineX > boxWidth + 50 || lineY < -50 || lineY > boxHeight + 50 || count > 120) {
         return
       }
   
@@ -84,16 +81,15 @@ export default function CanvasBackground() {
       })
     }
 
-
-
-    const random = () => Math.random() * 0.6 + 0.2
+    const randomMiddle = () => Math.random() * 0.6 + 0.2
+    const randomBottom = () => Math.random() * 0.4 + 0.4
 
     // 左侧
-    drawLine(-5, boxHeight * random(), 0)
+    drawLine(0, boxHeight * randomBottom(), 0)
     // 右侧
-    drawLine(boxWidth + 5, boxHeight * random(), rad180)
+    drawLine(boxWidth, boxHeight * randomBottom(), rad180)
     // 下侧
-    drawLine(boxWidth * random(), boxHeight + 5, -rad90)
+    drawLine(boxWidth * randomMiddle(), boxHeight, -rad90)
   }, [])
 
   return (
