@@ -59,9 +59,9 @@ function markedSetHeadingId() {
          * 比较子集中的最后一项 level
          * 小于等于该最后一项 level 则视为该级的heading
          * 大于该最后一项 level 则进行递归调用
-         * 
+         *
          * 同级别中可能存在多个级别的heading
-         * 使用时尽量保持规范 避免该问题 
+         * 使用时尽量保持规范 避免该问题
          *
          */
         if (headingList.length === 0) {
@@ -175,6 +175,7 @@ fs.readdir('./content/posts', (err, files) => {
 
   // 所有tag标签及数量
   const tagsNumber = {}
+  const allList = []
 
   for (let i = 0; i < fileMdList.length; i++) {
     const element = fileMdList[i]
@@ -222,6 +223,9 @@ fs.readdir('./content/posts', (err, files) => {
       }
     })
 
+    // 记录所有文章 用于搜索
+    allList.push(obj)
+
     // 分别写入文章详情
     fs.writeFile(
       `./content/data/${obj.slug}.json`,
@@ -242,6 +246,15 @@ fs.readdir('./content/posts', (err, files) => {
     }
 
     console.log('写入list.json成功')
+  })
+
+  fs.writeFile('./content/data/all.json', JSON.stringify(allList), (err) => {
+    if (err) {
+      console.error(err)
+      return
+    }
+
+    console.log('写入all.json成功')
   })
 
   const tagsNumberList = Object.entries(tagsNumber).map((item) => {
