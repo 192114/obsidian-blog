@@ -33,20 +33,23 @@ export default function Header() {
           hasScroll && 'shadow-md'
         )}
       >
-        <nav className="flex-y-center h-full w-full gap-4 justify-end">
-          <Link href="/" className="flex-center">
-            a
+        <nav className="flex-y-center h-full w-full gap-5 justify-end text-text-weak">
+          <Link href="/" className="flex-center hover:text-primary gap-1">
+            <i className="i-lucide-home"></i>
+            首页
           </Link>
-          <Link href="/" className="flex-center">
-            b
+          <Link href="/tags" className="flex-center hover:text-primary gap-1">
+            <i className="i-lucide-tag"></i>
+            标签
           </Link>
-          <Link href="/" className="flex-center">
-            c
+          <Link href="/" className="flex-center hover:text-primary gap-1">
+            <i className="i-lucide-user"></i>
+            关于
           </Link>
           <Link
             href="https://github.com/192114"
             target="_blank"
-            className="flex-center"
+            className="flex-center hover:text-primary"
           >
             <i className="i-lucide-github"></i>
           </Link>
