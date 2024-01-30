@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import clsx from 'clsx'
 import Header from '@/components/Header'
-import CanvasBackground from '@/components/CanvasBackground'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -21,8 +20,6 @@ export default function RootLayout({
 
         {/* 主体内容区 */}
         {children}
-
-        <CanvasBackground />
       </body>
     </html>
   )
