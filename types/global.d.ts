@@ -30,9 +30,21 @@ interface IArticleInfo extends IArticle {
   heading: IHeadingItem[]
 }
 
+interface ITokenItem {
+  type: string
+  text?: string
+  raw: string
+  depth?: number
+  tokens?: ITokenItem[]
+}
+
+interface ISearchItem extends IArticle {
+  tokens: ITokenItem[]
+}
+
 interface IPostItem {
   year: number
-  list: IArticleInfo[]
+  list: IArticle[]
 }
 
 interface IRejectResponse {
