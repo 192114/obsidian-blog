@@ -1,8 +1,13 @@
 import { readFile } from 'fs'
 
 import PostItem from '@/components/PostItem'
+import Filter from './filter'
 
-const getPostsData = async () => {
+export type PostProps = {
+  tag: string | null;
+};
+
+const getPostsData = async (tag: PostProps['tag']) => {
   const res: IResponse<IPostItem[]> = await new Promise((resolve, reject) => {
     readFile('./content/data/list.json', 'utf-8', (err, data) => {
       if (err) {
@@ -11,8 +16,28 @@ const getPostsData = async () => {
           code: -1,
         })
       } else {
+        const dataParse = JSON.parse(data) as IPostItem[]
+
+        let filterData = dataParse
+
+        if (tag) {
+          filterData = []
+
+          dataParse.forEach((item) => {
+            const children = item.list.filter((inner) =>
+              inner.tags.includes(tag)
+            )
+            if (children.length > 0) {
+              filterData.push({
+                ...item,
+                list: children,
+              })
+            }
+          })
+        }
+
         resolve({
-          data: JSON.parse(data),
+          data: filterData,
           code: 0,
         })
       }
@@ -26,8 +51,8 @@ const getPostsData = async () => {
   return null
 }
 
-export default async function PostList() {
-  const posts = await getPostsData()
+export default async function PostList({ tag }: PostProps) {
+  const posts = await getPostsData(tag)
 
   if (!posts) {
     return null
@@ -35,17 +60,21 @@ export default async function PostList() {
 
   return (
     <>
+      {tag && <Filter tag={tag} />}
+
       {posts?.map((item) => {
-        return <div key={item.year}>
-          <div className="relative h-20">
-            <span className="text-7em color-transparent absolute left--4rem top-0rem font-bold text-stroke-3 text-stroke-text-weak op10">
-              {item.year}
-            </span>
+        return (
+          <div key={item.year}>
+            <div className="relative h-20">
+              <span className="text-7em color-transparent absolute left--4rem top-0rem font-bold text-stroke-3 text-stroke-text-weak op10">
+                {item.year}
+              </span>
+            </div>
+            {item.list.map((item) => {
+              return <PostItem key={item.slug} {...item} />
+            })}
           </div>
-          {item.list.map((item) => {
-            return <PostItem key={item.slug} {...item} />
-          })}
-        </div>
+        )
       })}
     </>
   )

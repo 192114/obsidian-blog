@@ -59,7 +59,7 @@ export default function Header() {
       </header>
       <button
         className={clsx(
-          'border-none bg-transparent text-text-weak text-lg fixed bottom-4 right-4 cursor-pointer hover:text-primary opacity-0 transition-all duration-300',
+          'button-reset text-lg fixed bottom-4 right-4 cursor-pointer opacity-0 transition-all duration-300',
           showBackTop && 'opacity-100', 
           !showBackTop && 'pointer-events-none'
         )}

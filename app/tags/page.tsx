@@ -1,0 +1,54 @@
+import { readFile } from 'fs'
+import Link from 'next/link'
+
+import Tag from '@/components/Tag'
+import CanvasBackground from '@/components/CanvasBackground'
+
+const getTagsData = async () => {
+  const res: IResponse<ITagsItem[]> = await new Promise((resolve, reject) => {
+    readFile('./content/data/tags.json', 'utf-8', (err, data) => {
+      if (err) {
+        reject({
+          err,
+          code: -1,
+        })
+      } else {
+        resolve({
+          data: JSON.parse(data),
+          code: 0,
+        })
+      }
+    })
+  })
+
+  if (res.code === 0) {
+    return res.data
+  }
+
+  return null
+}
+
+export default async function Tags() {
+  const tags = await getTagsData()
+
+  if (!tags || tags.length === 0) {
+    return null
+  }
+
+  return (
+    <>
+      <CanvasBackground />
+      <main className="max-w-650px mx-auto">
+        <div className="pt-40px flex items-center gap-4">
+          {tags.map((item) => {
+            return (
+              <Link key={item.name} href={`/?tag=${item.name}`}>
+                <Tag text={`${item.name} (${item.number})`}  size="lg" />
+              </Link>
+            )
+          })}
+        </div>
+      </main>
+    </>
+  )
+}

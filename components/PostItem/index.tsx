@@ -6,19 +6,20 @@ export default function PostItem(props: IArticle) {
     return date.slice(5)
   }
 
-
   return (
     <Link href={`/post/${props.slug}`}>
-      <div className="flex-y-center justify-between gap-30px mb-20px slide-enter">
+      <div className="flex-y-center justify-between gap-30px mb-20px slide-enter group">
         <div className="flex-y-center gap-10px">
-          <span className="text-text-weak text-xs">{shortDate(props.date)}</span>
-          <span className="text-text font-400">{props.title}</span>
+          <span className="text-text-weak text-xs group-hover:text-primary">{shortDate(props.date)}</span>
+          <span className="text-text font-400 group-hover:text-primary">{props.title}</span>
         </div>
 
         <div className="flex-y-center gap-8px">
           {
             props.tags?.map((item) => (
-              <Tag key={item} text={item} />
+              <Link href={`/?tag=${item}`} key={item} replace>
+                <Tag text={item} className="group-hover:text-primary group-hover:underline" />
+              </Link>
             ))
           }
         </div>
