@@ -1,15 +1,17 @@
 'use client'
 
 import { useEffect, useRef, useTransition, useState } from 'react'
-import Fuse, { FuseResult } from 'fuse.js/min-basic'
+import Fuse, { FuseResult, FuseResultMatch } from 'fuse.js/min-basic'
 import clsx from 'clsx'
-import Tag from '../Tag'
+import { useRouter } from 'next/navigation'
 
 export interface ISearchInputProps {
   data: ISearchItem[];
 }
 
 export default function SearchInput({ data }: ISearchInputProps) {
+  const router = useRouter()
+
   const inputRef = useRef<HTMLInputElement>(null)
   const fuseRef = useRef<Fuse<ISearchItem> | null>(null)
   const [_, startTransition] = useTransition()
@@ -34,7 +36,7 @@ export default function SearchInput({ data }: ISearchInputProps) {
     fuseRef.current = new Fuse(data, {
       keys: ['title', 'tokens.tokens.text'],
       includeMatches: true,
-      threshold: 0.3, // 0 精确匹配
+      threshold: 0.1, // 0 精确匹配
     })
   }, [data])
 
@@ -63,6 +65,34 @@ export default function SearchInput({ data }: ISearchInputProps) {
     return val
   }
 
+  const onLinkDetail = (
+    current: FuseResult<ISearchItem>,
+    match: FuseResultMatch
+  ) => {
+    const slug = current.item.slug
+
+    let path = `/post/${slug}`
+
+    if (match.key !== 'title') {
+      const hash = match.value
+      let counter = 0
+
+      for (let i = 0; i < current.matches!.length; i++) {
+        const element = current.matches![i]
+        if (element.value === match.value) {
+          if (element.refIndex === match.refIndex) {
+            break
+          }
+          counter += 1
+        }
+      }
+
+      path = `${path}?anchor=${hash}&index=${counter}`
+    }
+
+    router.push(path)
+  }
+
   return (
     <div className="relative hidden-in-mobile h-24px">
       <div className="relative h-full flex-y-center gap-1 focus-within:ring-1 focus-within:ring-primary px-2 rounded-sm text-text-weak focus-within:text-text">
@@ -74,7 +104,7 @@ export default function SearchInput({ data }: ISearchInputProps) {
           onBlur={() => {
             setTimeout(() => {
               setDownmenuShow(false)
-            }, 50)
+            }, 300)
           }}
           onFocus={(e) => {
             onSearch(e.target.value)
@@ -104,18 +134,19 @@ export default function SearchInput({ data }: ISearchInputProps) {
 
           <ul className="list-none my-0">
             {searchList.map((item) => (
-              <li key={item.item.slug} className="">
+              <li key={item.item.slug}>
                 {item.matches?.map((match) => {
                   if (!match.value) {
                     return null
                   }
                   return (
                     <div
-                      key={match.refIndex}
+                      key={`${item.item.slug}-${match.refIndex}`}
                       className={clsx(
                         ' text-xs py-2 border-b-solid border-border border-1px flex-y-center gap-4 hover:bg-active hover:text-primary cursor-pointer px-4',
                         match.key === 'title' ? 'text-text' : 'text-text-weak'
                       )}
+                      onClick={() => onLinkDetail(item, match)}
                     >
                       {match.key === 'title' ? (
                         <i className="i-lucide-file"></i>

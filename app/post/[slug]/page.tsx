@@ -3,6 +3,7 @@ import clsx from 'clsx'
 
 import Tag from '@/components/Tag'
 import Forward from '@/components/Forward'
+import AutoScroll from '@/components/AutoScroll'
 
 import type { Metadata } from 'next'
 
@@ -12,7 +13,7 @@ import '@/styles/highlight.css'
 interface ParamType {
   params: {
     slug: string;
-  };
+  }
 }
 
 const getPostInfo = async (slug: string) => {
@@ -109,9 +110,9 @@ export default async function Article({ params }: ParamType) {
         <article
           dangerouslySetInnerHTML={{ __html: articleInfo.html }}
           className="markdown-body pb-60px"
-          data-theme="dark"
         />
 
+        <AutoScroll />
         <Forward />
       </main>
     </>
