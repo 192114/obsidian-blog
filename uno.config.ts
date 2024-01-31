@@ -23,6 +23,7 @@ export default defineConfig({
       textWeak: 'hsl(var(--text-weak))',
       border: 'hsl(var(--border))',
       active: 'hsl(var(--active))',
+      highLight: 'hsl(var(--high-light))',
     }
   },
   presets: [
