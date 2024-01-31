@@ -66,7 +66,7 @@ export default async function PostList({ tag }: PostProps) {
         return (
           <div key={item.year}>
             <div className="relative h-20">
-              <span className="text-7em color-transparent absolute left--4rem top-0rem font-bold text-stroke-3 text-stroke-text-weak op10">
+              <span className="text-7em color-transparent absolute left--4rem top-0rem font-bold text-stroke-3 text-stroke-text-weak op10 <md:left-0">
                 {item.year}
               </span>
             </div>

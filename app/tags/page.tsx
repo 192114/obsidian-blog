@@ -38,7 +38,7 @@ export default async function Tags() {
   return (
     <>
       <CanvasBackground />
-      <main className="max-w-650px mx-auto">
+      <main className="max-w-682px mx-auto px-16px">
         <div className="pt-40px flex items-center gap-4">
           {tags.map((item) => {
             return (

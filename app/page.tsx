@@ -21,7 +21,7 @@ export default async function Home({
   return (
     <>
       <CanvasBackground />
-      <main className="max-w-650px mx-auto mt-80px">
+      <main className="max-w-682px mx-auto mt-80px px-16px">
         <PostList tag={tag} />
       </main>
     </>

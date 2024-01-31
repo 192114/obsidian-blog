@@ -10,8 +10,18 @@ export default function CanvasBackground() {
     const dpr = window.devicePixelRatio || 1
     const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
 
-    // @ts-expect-error vendor
-    const bsr = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1
+    const bsr =
+      // @ts-expect-error vendor
+      ctx.webkitBackingStorePixelRatio ||
+      // @ts-expect-error vendor
+      ctx.mozBackingStorePixelRatio ||
+      // @ts-expect-error vendor
+      ctx.msBackingStorePixelRatio ||
+      // @ts-expect-error vendor
+      ctx.oBackingStorePixelRatio ||
+      // @ts-expect-error vendor
+      ctx.backingStorePixelRatio ||
+      1
 
     const dpi = dpr / bsr
     canvas.style.width = `${boxWidth}px`
@@ -30,7 +40,7 @@ export default function CanvasBackground() {
   }
 
   /**
-   * 
+   *
    * @param x 当前x
    * @param y 当前y
    * @param r 绘制长度
@@ -42,11 +52,10 @@ export default function CanvasBackground() {
     return [x1, y1]
   }
 
-
   useEffect(() => {
     const { ctx, boxWidth, boxHeight } = initCanvas()
-  
-    ctx.strokeStyle='#88888825'
+
+    ctx.strokeStyle = '#88888825'
     ctx.lineWidth = 1
     const rad15 = Math.PI / 12
     const rad90 = Math.PI / 2
@@ -54,7 +63,7 @@ export default function CanvasBackground() {
     const minBranch = 6
     const len = 6
 
-    const drawLine = (x:number, y:number, rad:number, count = 0) => {    
+    const drawLine = (x: number, y: number, rad: number, count = 0) => {
       const length = Math.random() * len
       count++
       const [lineX, lineY] = getCoordinates(x, y, length, rad)
@@ -65,12 +74,18 @@ export default function CanvasBackground() {
 
       const rad1 = rad + Math.random() * rad15
       const rad2 = rad - Math.random() * rad15
-      if (lineX < -50 || lineX > boxWidth + 50 || lineY < -50 || lineY > boxHeight + 50 || count > 120) {
+      if (
+        lineX < -50 ||
+        lineX > boxWidth + 50 ||
+        lineY < -50 ||
+        lineY > boxHeight + 50 ||
+        count > 120
+      ) {
         return
       }
-  
+
       const rate = count > minBranch ? 0.5 : 0.8
-  
+
       requestAnimationFrame(() => {
         if (Math.random() < rate) {
           drawLine(lineX, lineY, rad1, count)
@@ -84,10 +99,13 @@ export default function CanvasBackground() {
     const randomMiddle = () => Math.random() * 0.6 + 0.2
     const randomBottom = () => Math.random() * 0.4 + 0.4
 
-    // 左侧
-    drawLine(0, boxHeight * randomBottom(), 0)
-    // 右侧
-    drawLine(boxWidth, boxHeight * randomBottom(), rad180)
+    if (boxWidth >= 640) {
+      // 左侧
+      drawLine(0, boxHeight * randomBottom(), 0)
+      // 右侧
+      drawLine(boxWidth, boxHeight * randomBottom(), rad180)
+    }
+
     // 下侧
     drawLine(boxWidth * randomMiddle(), boxHeight, -rad90)
   }, [])
@@ -96,6 +114,5 @@ export default function CanvasBackground() {
     <div className="fixed left-0 top-0 right-0 bottom-0 pointer-events-none z--1">
       <canvas id="canvas" />
     </div>
-    
   )
 }

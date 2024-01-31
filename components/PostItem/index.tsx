@@ -12,10 +12,10 @@ export default function PostItem(props: IArticle) {
 
   return (
     <div
-      className="flex-y-center justify-between gap-30px mb-20px slide-enter group cursor-pointer"
+      className="flex-y-center justify-between gap-x-30px mb-20px slide-enter group cursor-pointer <md:flex-col <md:items-start"
       onClick={() => router.push(`/post/${props.slug}`)}
     >
-      <div className="flex-y-center gap-10px">
+      <div className="flex-y-center gap-10px flex-1">
         <span className="text-text-weak text-xs group-hover:text-primary">
           {shortDate(props.date)}
         </span>
@@ -24,7 +24,7 @@ export default function PostItem(props: IArticle) {
         </span>
       </div>
 
-      <div className="flex-y-center gap-8px">
+      <div className="flex-y-center gap-8px <md:justify-end <md:w-full">
         {props.tags?.map((item) => (
           <Link href={`/?tag=${item}`} key={item} replace>
             <Tag

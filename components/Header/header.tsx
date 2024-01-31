@@ -33,23 +33,23 @@ export default function Header({ children }: IHeaderProps) {
     <>
       <header
         className={clsx(
-          'sticky top-0 z-50 w-full p-x-8 py-4 bg-background-80 backdrop-filter backdrop-blur-5px flex-y-center',
+          'sticky top-0 z-50 w-full p-x-8 py-4 bg-background-80 backdrop-filter backdrop-blur-5px flex-y-center <md:p-2',
           hasScroll && 'shadow-md'
         )}
       >
-        <nav className="flex-y-center h-full w-full gap-5 justify-end text-text-weak">
+        <nav className="flex-y-center h-full w-full gap-5 justify-end text-text-weak text-sm">
           {children ? children : null}
           <Link href="/" className="flex-center hover:text-primary gap-1">
             <i className="i-lucide-home"></i>
-            首页
+            <span className="hidden-in-mobile">首页</span>
           </Link>
           <Link href="/tags" className="flex-center hover:text-primary gap-1">
             <i className="i-lucide-tag"></i>
-            标签
+            <span className="hidden-in-mobile">标签</span>
           </Link>
           <Link href="/" className="flex-center hover:text-primary gap-1">
             <i className="i-lucide-user"></i>
-            关于
+            <span className="hidden-in-mobile">关于</span>
           </Link>
           <Link
             href="https://github.com/192114"
@@ -64,7 +64,7 @@ export default function Header({ children }: IHeaderProps) {
       </header>
       <button
         className={clsx(
-          'button-reset text-lg fixed bottom-4 right-4 cursor-pointer opacity-0 transition-all duration-300',
+          'button-reset text-lg fixed bottom-4 right-4 cursor-pointer opacity-0 transition-all duration-300 z-12',
           showBackTop && 'opacity-100',
           !showBackTop && 'pointer-events-none'
         )}

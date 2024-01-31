@@ -5,7 +5,8 @@ export default defineConfig({
     'flex-center': 'flex justify-center items-center',
     'flex-x-center': 'flex justify-center',
     'flex-y-center': 'flex items-center',
-    'button-reset': 'border-none bg-transparent text-text-weak cursor-pointer hover:text-primary'
+    'button-reset': 'border-none bg-transparent text-text-weak cursor-pointer hover:text-primary',
+    'hidden-in-mobile': '<sm:hidden',
   },
   rules: [
     [/^slide-enter-(\d+)$/, ([_, n]) => ({

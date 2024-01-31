@@ -90,7 +90,7 @@ export default async function Article({ params }: ParamType) {
           {renderHeadAnchor(articleInfo.heading)}
         </div>
       </aside>
-      <main className="max-w-650px mx-auto mt-80px slide-enter">
+      <main className="max-w-682px mx-auto mt-80px slide-enter px-16px">
         <h1 className="mb-10px">{articleInfo?.title}</h1>
         <div className="text-sm text-text-weak flex items-center justify-between mb-20px">
           <div>
