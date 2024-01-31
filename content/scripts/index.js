@@ -156,7 +156,7 @@ function markedHandle(filePath) {
   return {
     html,
     heading,
-    otherTokens,
+    tokens: otherTokens,
     ...attributes,
   }
 }
