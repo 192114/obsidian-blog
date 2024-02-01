@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-p-t-64px">
+    <html lang="en">
       <body className={clsx('bg-background text-text')}>
         <Header />
 

@@ -34,7 +34,7 @@ export default function SearchInput({ data }: ISearchInputProps) {
 
   useEffect(() => {
     fuseRef.current = new Fuse(data, {
-      keys: ['title', 'tokens.tokens.text'],
+      keys: ['title', 'heading'],
       includeMatches: true,
       threshold: 0.1, // 0 精确匹配
     })
@@ -42,6 +42,7 @@ export default function SearchInput({ data }: ISearchInputProps) {
 
   const onSearch = (val: string) => {
     if (!fuseRef.current || !val) {
+      setSearchList([])
       return
     }
     const result = fuseRef.current.search(val)
@@ -75,21 +76,9 @@ export default function SearchInput({ data }: ISearchInputProps) {
 
     if (match.key !== 'title') {
       const hash = match.value
-      let counter = 0
-
-      for (let i = 0; i < current.matches!.length; i++) {
-        const element = current.matches![i]
-        if (element.value === match.value) {
-          if (element.refIndex === match.refIndex) {
-            break
-          }
-          counter += 1
-        }
-      }
-
-      path = `${path}?anchor=${hash}&index=${counter}`
+      path = `${path}#anchor-${hash}`
     }
-
+    inputRef.current!.value = ''
     router.push(path)
   }
 
@@ -98,6 +87,7 @@ export default function SearchInput({ data }: ISearchInputProps) {
       <div className="relative h-full flex-y-center gap-1 focus-within:ring-1 focus-within:ring-primary px-2 rounded-sm text-text-weak focus-within:text-text">
         <i className="i-lucide-search"></i>
         <input
+          type="text"
           className="border-none outline-none ring-none  py-0 rounded-sm text-text-weak shadow-sm w-120px focus:w-180px text-xs transition-width bg-transparent h-full"
           placeholder="搜索"
           ref={inputRef}
@@ -151,7 +141,11 @@ export default function SearchInput({ data }: ISearchInputProps) {
                       {match.key === 'title' ? (
                         <i className="i-lucide-file"></i>
                       ) : (
+                        <>
                         <i className="i-lucide-text"></i>
+                        <span className="flex-1">{item.item.title}</span>
+                        <i className="i-lucide-chevron-right"></i>
+                        </>
                       )}
                       <span
                         dangerouslySetInnerHTML={{

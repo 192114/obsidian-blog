@@ -3,7 +3,6 @@ import clsx from 'clsx'
 
 import Tag from '@/components/Tag'
 import Forward from '@/components/Forward'
-import AutoScroll from '@/components/AutoScroll'
 
 import type { Metadata } from 'next'
 
@@ -111,8 +110,7 @@ export default async function Article({ params }: ParamType) {
           dangerouslySetInnerHTML={{ __html: articleInfo.html }}
           className="markdown-body pb-60px"
         />
-
-        <AutoScroll />
+        
         <Forward />
       </main>
     </>

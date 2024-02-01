@@ -2,7 +2,7 @@ import { readFile } from 'fs'
 import SearchInput from './searchInput'
 
 const getSearchList = async () => {
-  const res = await new Promise<IResponse<IArticleInfo[]>>((resolve, reject) => {
+  const res = await new Promise<IResponse<ISearchItem[]>>((resolve, reject) => {
     readFile('./content/data/all.json', 'utf8', (err, data) => {
       if (err) {
         reject({
