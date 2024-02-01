@@ -230,7 +230,7 @@ fs.readdir('./content/posts', (err, files) => {
     })
 
     // 记录所有文章 用于搜索
-    allList.push({heading: flatHeading, title: currentNoHtml.title})
+    allList.push({heading: flatHeading, title: currentNoHtml.title, slug: currentNoHtml.slug})
 
     // 分别写入文章详情
     fs.writeFile(
