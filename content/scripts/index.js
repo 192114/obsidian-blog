@@ -10,6 +10,7 @@ const window = new JSDOM('').window
 const DOMPurify = createDOMPurify(window)
 
 let headingList = []
+let flatHeadingList = []
 let isFirstH2Tag = false
 let minLevel = 1
 
@@ -36,6 +37,7 @@ function markedSetHeadingId() {
     hooks: {
       preprocess: (markdown) => {
         headingList = []
+        flatHeadingList = []
         isFirstH2Tag = true
         minLevel = 1
         return markdown
@@ -50,6 +52,8 @@ function markedSetHeadingId() {
           return ''
         }
         isFirstH2Tag = false
+
+        flatHeadingList.push(text)
 
         /**
          * 锚点规则 level 是 h 标签的 1 - 6
@@ -109,6 +113,7 @@ function markedHandle(filePath) {
   const htmlOrigin = marked.parse(content)
   const html = DOMPurify.sanitize(htmlOrigin)
   const heading = [...headingList]
+  const flatHeading = [...flatHeadingList]
 
   const vNode = marked.lexer(content)
 
@@ -122,8 +127,6 @@ function markedHandle(filePath) {
   const tagsStartIndex = textList.findIndex(
     (item) => item.text.indexOf('tags:') !== -1
   )
-
-  const otherTokens = vNode.filter((_, i) => i !== firstHeadIndex)
 
   const tags = []
   let tagsLastIndex = 0
@@ -156,7 +159,7 @@ function markedHandle(filePath) {
   return {
     html,
     heading,
-    tokens: otherTokens,
+    flatHeading,
     ...attributes,
   }
 }
@@ -189,7 +192,7 @@ fs.readdir('./content/posts', (err, files) => {
 
     const currentByYear = posts.find((item) => item.year === year)
 
-    const { html, heading, otherTokens, ...currentNoHtml } = obj
+    const { html, heading, flatHeading, ...currentNoHtml } = obj
 
     // 文章年份分类
     if (currentByYear) {
@@ -227,7 +230,7 @@ fs.readdir('./content/posts', (err, files) => {
     })
 
     // 记录所有文章 用于搜索
-    allList.push({otherTokens, ...currentNoHtml})
+    allList.push({heading: flatHeading, title: currentNoHtml.title})
 
     // 分别写入文章详情
     fs.writeFile(
