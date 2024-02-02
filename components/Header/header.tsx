@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import ToggleTheme from '@/components/ToggleTheme'
+import HomeTitle from '@/components/HomeTitle'
 
 export interface IHeaderProps {
   children?: React.ReactNode;
@@ -37,6 +38,7 @@ export default function Header({ children }: IHeaderProps) {
           hasScroll && 'shadow-md'
         )}
       >
+        <HomeTitle />
         <nav className="flex-y-center h-full w-full gap-5 justify-end text-text-weak text-sm">
           {children ? children : null}
           <Link href="/" className="flex-center hover:text-primary gap-1">
