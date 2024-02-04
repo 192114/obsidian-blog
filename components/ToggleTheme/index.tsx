@@ -1,25 +1,17 @@
 'use client'
 
-import { useEffect, useState, useCallback, type MouseEvent } from 'react'
+import { useEffect, useState, useCallback, useContext, type MouseEvent } from 'react'
 import clsx from 'clsx'
+import { getNextTheme } from '@/libs'
+import { type ThemeContextType } from '@/components/Header/context'
 
-export default function ToggleTheme() {
-  const [theme, setTheme] = useState<'light' | 'dark' | 'auto'>('auto')
+interface IToggleThemeProps {
+  theme: ThemeContextType
+  setTheme: (theme: ThemeContextType) => void
+}
 
-  const getNextTheme = (targetTheme: 'light' | 'dark' | 'auto') => {
-    let nextTheme = targetTheme
-    if (targetTheme === 'auto') {
-      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)')
-      nextTheme = darkModeQuery.matches ? 'dark' : 'light'
-    }
-
-    return {
-      nextTheme,
-      isLight: nextTheme === 'light',
-    }
-  }
-
-  const themeHandle = useCallback((targetTheme: 'light' | 'dark' | 'auto') => {
+export default function ToggleTheme({ theme, setTheme }: IToggleThemeProps) {
+  const themeHandle = useCallback((targetTheme: ThemeContextType) => {
     const { isLight } = getNextTheme(targetTheme)
 
     document.documentElement.classList.add(isLight ? 'light' : 'dark')
@@ -31,11 +23,11 @@ export default function ToggleTheme() {
     )
 
     setTheme(targetTheme)
-  }, [])
+  }, [setTheme])
 
   const changeTheme = (
     e: MouseEvent<HTMLDivElement>,
-    targetTheme: 'light' | 'dark' | 'auto'
+    targetTheme: ThemeContextType
   ) => {
     if (targetTheme === theme) {
       return
@@ -82,7 +74,6 @@ export default function ToggleTheme() {
     const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
     const themeChangeHandle = (e: MediaQueryListEvent) => {
-      console.log('change', e)
       if (theme === 'auto') {
         themeHandle('auto')
       }

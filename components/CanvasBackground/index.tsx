@@ -1,44 +1,8 @@
 'use client'
 import { useEffect } from 'react'
+import { initCanvas } from '@/libs'
 
 export default function CanvasBackground() {
-  const initCanvas = () => {
-    const boxWidth = window.innerWidth
-    const boxHeight = window.innerHeight
-
-    const canvas = document.getElementById('canvas') as HTMLCanvasElement
-    const dpr = window.devicePixelRatio || 1
-    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D
-
-    const bsr =
-      // @ts-expect-error vendor
-      ctx.webkitBackingStorePixelRatio ||
-      // @ts-expect-error vendor
-      ctx.mozBackingStorePixelRatio ||
-      // @ts-expect-error vendor
-      ctx.msBackingStorePixelRatio ||
-      // @ts-expect-error vendor
-      ctx.oBackingStorePixelRatio ||
-      // @ts-expect-error vendor
-      ctx.backingStorePixelRatio ||
-      1
-
-    const dpi = dpr / bsr
-    canvas.style.width = `${boxWidth}px`
-    canvas.style.height = `${boxHeight}px`
-    canvas.width = boxWidth * dpi
-    canvas.height = boxHeight * dpi
-
-    ctx.scale(dpi, dpi)
-
-    return {
-      canvas,
-      ctx,
-      boxWidth,
-      boxHeight,
-    }
-  }
-
   /**
    *
    * @param x 当前x
@@ -53,7 +17,7 @@ export default function CanvasBackground() {
   }
 
   useEffect(() => {
-    const { ctx, boxWidth, boxHeight } = initCanvas()
+    const { ctx, boxWidth, boxHeight } = initCanvas('canvas')
 
     ctx.strokeStyle = '#88888825'
     ctx.lineWidth = 1

@@ -5,12 +5,15 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import ToggleTheme from '@/components/ToggleTheme'
 import HomeTitle from '@/components/HomeTitle'
+import { ThemeContext, type ThemeContextType } from './context'
 
 export interface IHeaderProps {
   children?: React.ReactNode;
 }
 
 export default function Header({ children }: IHeaderProps) {
+  const [theme, setTheme] = useState<ThemeContextType>('auto')
+
   const [hasScroll, setHasScroll] = useState(false)
   const [showBackTop, setshowBackTop] = useState(false)
   useEffect(() => {
@@ -31,7 +34,7 @@ export default function Header({ children }: IHeaderProps) {
   }, [])
 
   return (
-    <>
+    <ThemeContext.Provider value={theme}>
       <header
         className={clsx(
           'sticky top-0 z-50 w-full p-x-8 py-4 bg-background-80 backdrop-filter backdrop-blur-5px flex-y-center <md:p-2',
@@ -61,7 +64,7 @@ export default function Header({ children }: IHeaderProps) {
             <i className="i-lucide-github"></i>
           </Link>
 
-          <ToggleTheme />
+          <ToggleTheme theme={theme} setTheme={setTheme} />
         </nav>
       </header>
       <button
@@ -74,6 +77,6 @@ export default function Header({ children }: IHeaderProps) {
       >
         <i className="i-lucide-arrow-up"></i>
       </button>
-    </>
+    </ThemeContext.Provider>
   )
 }
