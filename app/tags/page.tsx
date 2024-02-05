@@ -1,12 +1,14 @@
 import { readFile } from 'fs'
+import path from 'path'
 import Link from 'next/link'
 
 import Tag from '@/components/Tag'
 import CanvasBackground from '@/components/CanvasBackground'
 
 const getTagsData = async () => {
+  const filePath = path.join(process.cwd(), 'content', 'data', 'tags.json')
   const res: IResponse<ITagsItem[]> = await new Promise((resolve, reject) => {
-    readFile('./content/data/tags.json', 'utf-8', (err, data) => {
+    readFile(filePath, 'utf-8', (err, data) => {
       if (err) {
         reject({
           err,
@@ -43,7 +45,7 @@ export default async function Tags() {
           {tags.map((item) => {
             return (
               <Link key={item.name} href={`/?tag=${item.name}`}>
-                <Tag text={`${item.name} (${item.number})`}  size="lg" />
+                <Tag text={`${item.name} (${item.number})`} size="lg" />
               </Link>
             )
           })}

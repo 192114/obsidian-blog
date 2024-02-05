@@ -1,18 +1,20 @@
 import { readFile } from 'fs'
+import path from 'path'
 import SearchInput from './searchInput'
 
 const getSearchList = async () => {
   const res = await new Promise<IResponse<ISearchItem[]>>((resolve, reject) => {
-    readFile('./content/data/all.json', 'utf8', (err, data) => {
+    const filePath = path.join(process.cwd(), 'content', 'data', 'all.json')
+    readFile(filePath, 'utf8', (err, data) => {
       if (err) {
         reject({
           err,
-          code: -1
+          code: -1,
         })
       } else {
         resolve({
           data: JSON.parse(data),
-          code: 0
+          code: 0,
         })
       }
     })
@@ -31,6 +33,6 @@ export default async function SearchBar() {
   if (!list || list.length === 0) {
     return null
   }
-  
+
   return <SearchInput data={list} />
 }

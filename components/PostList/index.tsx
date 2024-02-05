@@ -1,4 +1,5 @@
 import { readFile } from 'fs'
+import path from 'path'
 
 import PostItem from '@/components/PostItem'
 import Filter from './filter'
@@ -9,7 +10,9 @@ export type PostProps = {
 
 const getPostsData = async (tag: PostProps['tag']) => {
   const res: IResponse<IPostItem[]> = await new Promise((resolve, reject) => {
-    readFile('./content/data/list.json', 'utf-8', (err, data) => {
+    const filePath = path.join(process.cwd(), 'content', 'data', 'list.json')
+
+    readFile(filePath, 'utf-8', (err, data) => {
       if (err) {
         reject({
           err,

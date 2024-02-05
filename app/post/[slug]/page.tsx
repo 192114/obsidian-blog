@@ -1,4 +1,5 @@
 import { readFile } from 'fs'
+import path from 'path'
 import clsx from 'clsx'
 
 import Tag from '@/components/Tag'
@@ -12,12 +13,13 @@ import '@/styles/highlight.css'
 interface ParamType {
   params: {
     slug: string;
-  }
+  };
 }
 
 const getPostInfo = async (slug: string) => {
+  const filePath = path.join(process.cwd(), 'content', 'data', `${slug}.json`)
   const res: IResponse<IArticleInfo> = await new Promise((resolve, reject) => {
-    readFile(`./content/data/${slug}.json`, 'utf-8', (err, data) => {
+    readFile(filePath, 'utf-8', (err, data) => {
       if (err) {
         reject({
           err,
@@ -110,7 +112,7 @@ export default async function Article({ params }: ParamType) {
           dangerouslySetInnerHTML={{ __html: articleInfo.html }}
           className="markdown-body pb-60px"
         />
-        
+
         <Forward />
       </main>
     </>
