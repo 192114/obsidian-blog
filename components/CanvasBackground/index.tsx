@@ -75,7 +75,7 @@ export default function CanvasBackground() {
   }, [])
 
   return (
-    <div className="fixed left-0 top-0 right-0 bottom-0 pointer-events-none z--1">
+    <div className="absolute left-0 top-0 right-0 bottom-0 pointer-events-none z--1">
       <canvas id="canvas" />
     </div>
   )
