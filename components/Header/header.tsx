@@ -52,7 +52,7 @@ export default function Header({ children }: IHeaderProps) {
             <i className="i-lucide-tag"></i>
             <span className="hidden-in-mobile">标签</span>
           </Link>
-          <Link href="/" className="flex-center hover:text-primary gap-1">
+          <Link href="/about" className="flex-center hover:text-primary gap-1">
             <i className="i-lucide-user"></i>
             <span className="hidden-in-mobile">关于</span>
           </Link>
