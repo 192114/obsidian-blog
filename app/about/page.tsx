@@ -92,9 +92,14 @@ export default function About() {
           </span>，
           曾经熟练使用<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">
             Jquery
-          </span>现在熟练使用<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">React</span>及周边生态，
-          
+          </span>现在熟练使用<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">React</span>及周边生态，也可以搞一搞<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Vue</span>。对于<span className='bg-card-background p-1 rounded-md mx-1 text-text-weak'>Typescript</span>有一定了解，但是对于它的各种体操还是不大深入。
         </p>
+        
+        <p>
+          现使用<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Vite</span>，之前也曾使用过<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Webpack</span>，对monorepo也有一定的实践，使用过<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">NX</span>和<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Turborepo</span>。
+        </p>
+
+        <Link href="/about/resume">Go</Link>
       </div>
     </main>
   )
