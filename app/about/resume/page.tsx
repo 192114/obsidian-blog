@@ -1,30 +1,41 @@
+import Link from 'next/link'
+
 export default function Resume() {
   return (
     <main className="max-w-21cm mx-auto my-16px min-h-29.7cm flex ring-2px ring-primary/10 shadow-active shadow-lg text-sm text-text">
       <div className="w-1/3 bg-card-background/20 p-12px">
         <div className="">
-          <h2>Shadow Sun</h2>
+          <h2>孙中雨</h2>
 
           <h3>前端开发工程师</h3>
 
+          <p className="text-xs text-text-weak">
+            热爱学习，关注前沿技术，并对感兴趣的技术进行实践。工作认真严谨，对代码质量有一定的要求。有一定的团队协作能力，能较好的协同完成任务。
+          </p>
+        </div>
+
+        <div className="py-20px border-0px border-t-1px border-border border-solid mt-20px">
           <div className="text-text-weak text-xs">
             <div>5 + 年前端开发经验</div>
             <div className="mt-5px">
               熟练使用HTML/CSS/Javascript，以及React/Nextjs/Vue等框架
             </div>
             <div className="mt-5px">
-              熟悉Antd/Element plus等UI框架，熟悉Tailwindcss原子类方案，同时关注Unocss方案，以及各种css预处理方案
+              熟悉Antd/Element
+              plus等UI框架，熟悉Tailwindcss原子类方案，同时关注Unocss方案，以及各种css预处理方案
             </div>
             <div className="mt-5px">
               熟悉Typescript，以及Vite，并结合eslint，prettier等工具创建项目
             </div>
-            <div className="mt-5px">了解Monorepo方案，并对Turborepo有一定的实践</div>
+            <div className="mt-5px">
+              了解Monorepo方案，并对Turborepo有一定的实践
+            </div>
             <div className="mt-5px">了解Electron，并使用其开发过一些小工具</div>
             <div className="mt-5px">熟悉Git等版本控制工具</div>
           </div>
         </div>
 
-        <div className="py-20px border-0px border-t-1px border-border border-solid mt-20px">
+        <div className="py-20px border-0px border-t-1px border-border border-solid">
           <div className="flex-y-center">
             <div className="rounded-full bg-card-background flex-center w-30px h-30px">
               <i className="i-lucide-code-2 text-18px"></i>
@@ -129,13 +140,33 @@ export default function Resume() {
             </div>
             <div className="text-text-weak ml-2 text-xs">
               <p className="m-0 p-0">个人网站</p>
-              <p className="m-0 p-0 text-text">https://shadow-sun.vercel.app</p>
+              <p className="m-0 p-0 text-text">
+                <Link href="https://shadow-sun.vercel.app">
+                  https://shadow-sun.vercel.app
+                </Link>
+              </p>
+            </div>
+          </div>
+
+          <div className="flex-y-center mt-12px">
+            <div className="rounded-full bg-card-background flex-center w-30px h-30px">
+              <i className="i-lucide-github text-18px"></i>
+            </div>
+            <div className="text-text-weak ml-2 text-xs">
+              <p className="m-0 p-0">Github</p>
+              <p className="m-0 p-0 text-text">
+                <Link href="https://github.com/192114">
+                  https://github.com/192114
+                </Link>
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="w-2/3 bg-card-background"></div>
+      <div className="w-2/3 bg-card-background">
+        
+      </div>
     </main>
   )
 }

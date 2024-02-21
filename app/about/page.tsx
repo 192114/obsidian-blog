@@ -4,8 +4,8 @@ export default function About() {
   return (
     <main className="max-w-682px mx-auto px-16px">
       <h3 className="mt-50px">关于博客</h3>
-      <div className="text-sm text-text">
-        <p>
+      <div className="text-sm text-text leading-relaxed">
+        <p className="leading-loose">
           博客基于
           <Link
             className="bg-card-background p-1 rounded-md mx-1 text-text-weak inline-flex items-center"
@@ -26,7 +26,7 @@ export default function About() {
           </Link>
           原子类框架，部署在Vercel上。
         </p>
-        <p>
+        <p className="leading-loose">
           <Link
             className="bg-card-background p-1 rounded-md mr-1 text-text-weak inline-flex items-center"
             href="https://obsidian.md/"
@@ -45,7 +45,7 @@ export default function About() {
           </span>
           来同步，并通过github的action自动将markdown转换为html
         </p>
-        <p>
+        <p className="leading-loose">
           Github仓库：
           <Link
             href="https://github.com/192114/obsidian-blog"
@@ -79,7 +79,7 @@ export default function About() {
         </p>
 
         <h3 className="mt-30px">关于我</h3>
-        <p>
+        <p className="leading-loose">
           前端开发，从业多年，熟练使用前端三剑客
           <span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">
             javascript
@@ -95,7 +95,7 @@ export default function About() {
           </span>现在熟练使用<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">React</span>及周边生态，也可以搞一搞<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Vue</span>。对于<span className='bg-card-background p-1 rounded-md mx-1 text-text-weak'>Typescript</span>有一定了解，但是对于它的各种体操还是不大深入。
         </p>
         
-        <p>
+        <p className="leading-loose">
           现使用<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Vite</span>，之前也曾使用过<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Webpack</span>，对monorepo也有一定的实践，使用过<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">NX</span>和<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Turborepo</span>。
         </p>
 
