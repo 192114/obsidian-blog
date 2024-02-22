@@ -8,7 +8,7 @@ export default function About() {
         <p className="leading-loose">
           博客基于
           <Link
-            className="bg-card-background p-1 rounded-md mx-1 text-text-weak inline-flex items-center"
+            className="tag-style inline-flex items-center"
             href="https://nextjs.org/"
             target="_blank"
           >
@@ -17,7 +17,7 @@ export default function About() {
           </Link>
           开发，并采用
           <Link
-            className="bg-card-background p-1 rounded-md mx-1 text-text-weak inline-flex items-center"
+            className="tag-style inline-flex items-center"
             href="https://unocss.dev/"
             target="_blank"
           >
@@ -36,11 +36,11 @@ export default function About() {
             <i className="i-lucide-arrow-up-right-from-square ml-1"></i>
           </Link>
           记录笔记，并通过github同步笔记内容，使用插件
-          <span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">
+          <span className="tag-style">
             github publisher
           </span>
           和
-          <span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">
+          <span className="tag-style">
             obsidian git
           </span>
           来同步，并通过github的action自动将markdown转换为html
@@ -60,7 +60,7 @@ export default function About() {
         <p className="flex-y-center">
           Inspired by
           <Link
-            className="bg-card-background p-1 rounded-md mx-1 text-text-weak inline-flex items-center"
+            className="tag-style inline-flex items-center"
             href="https://antfu.me/"
             target="_blank"
           >
@@ -81,22 +81,22 @@ export default function About() {
         <h3 className="mt-30px">关于我</h3>
         <p className="leading-loose">
           前端开发，从业多年，熟练使用前端三剑客
-          <span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">
+          <span className="tag-style">
             javascript
           </span>
-          <span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">
+          <span className="tag-style">
             css
           </span>
-          <span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">
+          <span className="tag-style">
             html
           </span>，
-          曾经熟练使用<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">
+          曾经熟练使用<span className="tag-style">
             Jquery
-          </span>现在熟练使用<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">React</span>及周边生态，也可以搞一搞<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Vue</span>。对于<span className='bg-card-background p-1 rounded-md mx-1 text-text-weak'>Typescript</span>有一定了解，但是对于它的各种体操还是不大深入。
+          </span>现在熟练使用<span className="tag-style">React</span>及周边生态，也可以搞一搞<span className="tag-style">Vue</span>。对于<span className='tag-style'>Typescript</span>有一定了解，但是对于它的各种体操还是不大深入。
         </p>
         
         <p className="leading-loose">
-          现使用<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Vite</span>，之前也曾使用过<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Webpack</span>，对monorepo也有一定的实践，使用过<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">NX</span>和<span className="bg-card-background p-1 rounded-md mx-1 text-text-weak">Turborepo</span>。
+          现使用<span className="tag-style">Vite</span>，之前也曾使用过<span className="tag-style">Webpack</span>，对monorepo也有一定的实践，使用过<span className="tag-style">NX</span>和<span className="tag-style">Turborepo</span>。
         </p>
 
         <Link href="/about/resume">Go</Link>
