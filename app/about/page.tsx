@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Forward from '@/components/Forward'
 
 export default function About() {
   return (
@@ -99,8 +100,13 @@ export default function About() {
           现使用<span className="tag-style">Vite</span>，之前也曾使用过<span className="tag-style">Webpack</span>，对monorepo也有一定的实践，使用过<span className="tag-style">NX</span>和<span className="tag-style">Turborepo</span>。
         </p>
 
-        <Link href="/about/resume">Go</Link>
+        <p>
+          寻找机会中，这是<Link href="/about/resume" className="color-primary">我的简历</Link> 🙈🙈🙈
+        </p>
+        
       </div>
+
+      <Forward />
     </main>
   )
 }

@@ -33,6 +33,13 @@ export default function ToggleTheme({ theme, setTheme }: IToggleThemeProps) {
       return
     }
 
+    // 如果不支持 startViewTransition 则直接切换主题
+    // @ts-ignore
+    if (!document.startViewTransition) {
+      themeHandle(targetTheme)
+      return
+    }
+
     // 获取鼠标点击坐标
     const x = e.clientX
     const y = e.clientY

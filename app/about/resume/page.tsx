@@ -4,15 +4,17 @@ import Link from 'next/link'
 import { useRef } from 'react'
 import ReactToPrint from 'react-to-print'
 
+import Forward from '@/components/Forward'
+
 export default function Resume() {
   const printRef = useRef<HTMLDivElement | null>(null)
   return (
     <main className="py-40px">
       <div
-        className="max-w-21cm mx-auto h-29.7cm flex ring-2px ring-primary/10 shadow-active text-sm text-text"
+        className="sm:w-21cm mx-auto sm:h-29.7cm sm:flex ring-2px ring-primary/10 text-sm text-text"
         ref={printRef}
       >
-        <div className="w-1/3 bg-card-background/20 p-12px">
+        <div className="sm:w-1/3 bg-card-background/20 p-12px">
           <div className="">
             <h2>孙中雨</h2>
 
@@ -158,7 +160,7 @@ export default function Resume() {
           </div>
         </div>
 
-        <div className="w-2/3 bg-card-background py-22px px-20px text-sm">
+        <div className="sm:w-2/3 bg-card-background py-22px px-20px text-sm">
           <ul className="timeline">
             <li className="timeline-item">
               <div className="timeline-point"></div>
@@ -297,9 +299,8 @@ export default function Resume() {
           </ul>
         </div>
       </div>
-      <div className="text-center mt-20px">
+      <div className="text-center mt-20px <sm:hidden">
         <ReactToPrint
-          // pageStyle={'@page { * { ring: 0;} }'}
           trigger={() => {
             return (
               <button className="button-reset border-1px border-solid border-primary text-primary rounded-md px-20px py-4px hover:text-primary/50 hover:border-primary/50">
@@ -310,6 +311,10 @@ export default function Resume() {
           }}
           content={() => printRef.current}
         />
+      </div>
+      
+      <div className="max-w-21cm mx-auto">
+        <Forward />
       </div>
     </main>
   )
