@@ -41,7 +41,7 @@ export default async function Tags() {
     <>
       <CanvasBackground />
       <main className="max-w-682px mx-auto px-16px">
-        <div className="pt-40px flex items-center gap-4">
+        <div className="pt-40px flex items-center gap-4 flex-wrap">
           {tags.map((item) => {
             return (
               <Link key={item.name} href={`/?tag=${item.name}`}>
