@@ -8,7 +8,7 @@ title: Obsidian的配置及插件
 slug: obsidian-config  
 keywords: Obsidian,个人博客  
 description: 配合github实现的博客工作流程  
-lastmod: 2024-02-26 15:59  
+lastmod: 2024-03-05  
 share: true  
 ---  
   
@@ -76,7 +76,10 @@ GROUP BY file.folder
 - `sort`排序，如`sort file.ctime asc/desc`  
 - `GROUP BY file.folder` 分组输出  
   
-`Linter` 目前采用默认配置。  
+#### Linter  
+它的主要作用是格式化md文件，并自动更新修改时间。在`Linter`配置页面的`YAML`选项卡修改如下配置：  
+![Pasted image 20240305105748.png](../../static/images/Pasted%20image%2020240305105748.png)  
+  
   
 ### 配置  
   
