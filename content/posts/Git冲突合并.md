@@ -127,7 +127,7 @@ Creating a new branch is quick AND simple.
 >>>>>>> feature1  
 ```  
   
-Git用`<<<<<<<`，`=======`，`>>>>>>>`标记出不同分支的内容，我们修改如下后保存：  
+Git用`<<<<<<<`，\-，`>>>>>>>`标记出不同分支的内容，我们修改如下后保存：  
   
 ``` Bash  
 Creating a new branch is quick and simple.  
