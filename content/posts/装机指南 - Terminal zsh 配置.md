@@ -7,11 +7,12 @@ title: 装机指南 - Terminal zsh 配置
 slug: mac-terminal  
 keywords: mac装机  
 description: mac装机，terminal，zsh，volta  
-lastmod:   
+lastmod: 2024-03-05  
 share: true  
 ---  
   
-### 安装 [Homebrew](https://brew.sh/)  
+### 安装Homebrew  
+官网地址[Homebrew](https://brew.sh/)  
   
 ``` Bash  
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
@@ -35,7 +36,8 @@ zsh常见配置文件
   
 加载顺序：`.zshenv `-> `.zprofile` if login ->` .zshrc` if interactive -> `.zlogin` if login -> `.zlogout`  
     
-### zsh插件管理 [zinit](https://github.com/zdharma-continuum/zinit#manual)   
+### zsh插件管理   
+文档地址[zinit](https://github.com/zdharma-continuum/zinit#manual)   
    
 ``` Bash  
  brew install zinit  
