@@ -4,6 +4,7 @@ import clsx from 'clsx'
 
 import Tag from '@/components/Tag'
 import Forward from '@/components/Forward'
+import CopyCode from '@/components/CopyCode'
 
 import type { Metadata } from 'next'
 
@@ -92,14 +93,15 @@ export default async function Article({ params }: ParamType) {
           {renderHeadAnchor(articleInfo.heading)}
         </div>
       </aside>
+      <CopyCode />
       <main className="max-w-682px mx-auto mt-80px slide-enter px-16px">
         <h1 className="mb-10px">{articleInfo?.title}</h1>
-        <div className="text-sm text-text-weak flex items-center justify-between mb-20px">
-          <div>
+        <div className="text-sm text-text-weak md:flex md:items-center md:justify-between mb-20px">
+          <div className="<md:flex-y-center <md:justify-between">
             <span>{articleInfo?.date}</span>
-            <span className="ml-10px">
+            <span>
               {articleInfo?.tags?.map((item) => (
-                <Tag key={item} text={item} />
+                <Tag key={item} text={item} className="mr-10px" />
               ))}
             </span>
           </div>

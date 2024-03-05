@@ -31,6 +31,7 @@ export default defineConfig({
       border: 'hsl(var(--border))',
       active: 'hsl(var(--active))',
       highLight: 'hsl(var(--high-light))',
+      success: 'hsl(var(--success))',
     }
   },
   presets: [
