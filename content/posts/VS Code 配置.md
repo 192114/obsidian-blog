@@ -7,7 +7,7 @@ title: VS Code 配置
 slug: vscode-config  
 keywords: Vscode  
 description: Vscode配置，Vscode插件  
-lastmod:   
+lastmod: 2024-03-05  
 share: true  
 ---  
   
@@ -24,8 +24,8 @@ share: true
 - svg-preview svg 预览  
 - vscode-stylelint css 语法校验  
 - vscode-icons 图标  
-- volar vue 语法支持  
-- vscode-typescript-vue-plugin vue typescript 支持  
+- ~~volar vue 语法支持~~ 官方建议换成Vue - Official  
+- ~~vscode-typescript-vue-plugin vue typescript 支持~~ 在插件搜索`@builtin typescript-language-features`并启用该功能  
 - material-theme 编辑器主题  
   
 ### 配置  
