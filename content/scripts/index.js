@@ -6,6 +6,32 @@ const { JSDOM } = require('jsdom')
 const fs = require('fs')
 const path = require('path')
 
+function deleteFolderRecursive(folderPath) {
+  if (fs.existsSync(folderPath)) {
+    fs.readdir(folderPath, (err, files) => {
+      if (err) throw err
+      for (const file of files) {
+        const curPath = path.join(folderPath, file)
+        fs.stat(curPath, (err, stats) => {
+          if (err) throw err
+          if (stats.isDirectory()) {
+            deleteFolderRecursive(curPath)
+          } else {
+            fs.unlink(curPath, (err) => {
+              if (err) throw err
+            })
+          }
+        })
+      }
+      fs.rmdir(folderPath, (err) => {
+        if (err) throw err
+      })
+    })
+  }
+}
+// 删除文件夹下的所有文件和文件夹
+deleteFolderRecursive('./content/data')
+
 const window = new JSDOM('').window
 const DOMPurify = createDOMPurify(window)
 
@@ -234,7 +260,11 @@ fs.readdir('./content/posts', (err, files) => {
     })
 
     // 记录所有文章 用于搜索
-    allList.push({heading: flatHeading, title: currentNoHtml.title, slug: currentNoHtml.slug})
+    allList.push({
+      heading: flatHeading,
+      title: currentNoHtml.title,
+      slug: currentNoHtml.slug,
+    })
 
     // 分别写入文章详情
     fs.writeFile(
