@@ -7,10 +7,9 @@ title: Git rebase(变基)
 slug: git-rebase  
 keywords: git rebase  
 description: git用法，git rebase  
-lastmod:   
+lastmod: 2024-03-07  
 share: true  
 ---  
-  
 使用  
   
 ``` Bash  
@@ -38,4 +37,4 @@ git checkout master
 git merge branch1  
 ```  
   
-![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/12/2/160149e054fe485c~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.awebp)
+![](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/12/2/160149e054fe485c~tplv-t2oaga2asx-jj-mark:1512:0:0:0:q75.awebp)  

@@ -4,19 +4,21 @@ series: javascript
 tags:  
   - javascript  
   - 面试  
-title: js-overload  
+title: javascript实现重载  
 slug: js-overload  
 keywords: javascript函数重载  
 description: 面试,js函数重载,Jquery作者实现  
 lastmod: 2024-03-07  
 share: true  
 ---  
+重载是面向对象编程语言（如 JAVA、C#）里的特性，Javascript 语言并不支持该特性。  
   
-重载是面向对象编程语言（如JAVA、C#）里的特性，Javascript语言并不支持该特性。  
 >重载（overload）是函数的名称一样，但是通过传入参数的个数不一样，调用不同的逻辑或返回不同的结果。  
   
 #### 实现  
-下面的方法是Jquery的作者John Resig实现的一个巧妙的思路：  
+  
+下面的方法是 Jquery 的作者 John Resig 实现的一个巧妙的思路：  
+  
 ```javascript  
 /**  
  * 函数重载方法  
@@ -71,16 +73,18 @@ console.log(obj.fn(1, 2));//>> 2 param:1,2
 ```  
   
 #### 解析  
-主要是利用了闭包（[closure](./js-closure.md)）,每次调用`overload`方法，都会产生一个`previousHandler`方法，存储上一个方法，形成闭包，使之前的方法都存在与内存中。  
+  
+主要是利用了闭包（[closure](./js-closure.md)）,每次调用 `overload` 方法，都会产生一个 `previousHandler` 方法，存储上一个方法，形成闭包，使之前的方法都存在与内存中。  
 下面用一张图来清晰的展示：  
 ![overload.jpg](../../static/images/overload.jpg)  
   
-- `fn.length` 表示函数的形式参数的数量，`arguments`表示实际传入参数的数量  
+- `fn.length` 表示函数的形式参数的数量，`arguments` 表示实际传入参数的数量  
 - 判断实参和形参数量相同表示命中需要执行的函数直接执行  
-- 如果没用命中则执行`previousHandler`，依次查找直到找到匹配函数后执行  
+- 如果没用命中则执行 `previousHandler`，依次查找直到找到匹配函数后执行  
   
-此时函数中的`this`是外层调用的对象`obj`。  
+此时函数中的 `this` 是外层调用的对象 `obj`。  
   
 #### 总结  
-虽然JavaScript上没有真正意义上的重载，但是却很常见，比如`splice`，一个参数是删除，两个参数是删除部分，三个参数是删除之后在新增。同样的还有`arseInt`等方法。  
-重载的好处是，功能相近的函数可以通过一个函数来实现，减少函数定义的数量。
+  
+虽然 JavaScript 上没有真正意义上的重载，但是却很常见，比如 `splice`，一个参数是删除，两个参数是删除部分，三个参数是删除之后在新增。同样的还有 `arseInt` 等方法。  
+重载的好处是，功能相近的函数可以通过一个函数来实现，减少函数定义的数量。  
