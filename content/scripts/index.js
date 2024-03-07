@@ -8,25 +8,15 @@ const path = require('path')
 
 function deleteFolderRecursive(folderPath) {
   if (fs.existsSync(folderPath)) {
-    fs.readdir(folderPath, (err, files) => {
-      if (err) throw err
-      for (const file of files) {
-        const curPath = path.join(folderPath, file)
-        fs.stat(curPath, (err, stats) => {
-          if (err) throw err
-          if (stats.isDirectory()) {
-            deleteFolderRecursive(curPath)
-          } else {
-            fs.unlink(curPath, (err) => {
-              if (err) throw err
-            })
-          }
-        })
+    fs.readdirSync(folderPath).forEach((file, index) => {
+      const curPath = path.join(folderPath, file)
+      if (fs.lstatSync(curPath).isDirectory()) {
+        deleteFolderRecursive(curPath)
+      } else {
+        fs.unlinkSync(curPath)
       }
-      fs.rmdir(folderPath, (err) => {
-        if (err) throw err
-      })
     })
+    fs.rmdirSync(folderPath)
   }
 }
 // 删除文件夹下的所有文件和文件夹
