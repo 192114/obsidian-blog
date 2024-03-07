@@ -11,7 +11,7 @@ lastmod: 2024-03-07
 share: true  
 ---  
   
-### VOLTA- javascript 工具链管理工具 主要用于node版本管理  
+### VOLTA- javascript 工具链管理工具 主要用于 node 版本管理  
   
 [VOLTA官网](https://github.com/volta-cli/volta)  
   
@@ -20,6 +20,7 @@ share: true
 ``` Bash  
 brew install   
 ```  
+  
 #### 配置环境变量  
   
 ``` Bash  
@@ -48,13 +49,13 @@ volta pin yarn@1.19.2
   
 ```  
   
-*关注node的试验特性（包管理器的管理器） -  Corepack*  
+*关注 node 的试验特性（包管理器的管理器） -  Corepack*  
   
 ### 必备软件  
   
-1. vs code 编辑器([VS Code 配置](./VS%20Code%20%E9%85%8D%E7%BD%AE.md))  
+1. vs code 编辑器 ([vscode-config](./vscode-config.md))  
 2. chrome 浏览器  
 3. inna 视频播放器  
-4. maccy 剪切板工具   
-5. obsidian 笔记工具([Obsidian的配置及插件](./Obsidian%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%8F%92%E4%BB%B6.md))  
-6. The Unarchiver 解压缩工具
+4. maccy 剪切板工具  
+5. obsidian 笔记工具 ([obsidian-config](./obsidian-config.md))  
+6. The Unarchiver 解压缩工具  
