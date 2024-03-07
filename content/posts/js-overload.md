@@ -8,7 +8,7 @@ title: js-overload
 slug: js-overload  
 keywords: javascript函数重载  
 description: 面试,js函数重载,Jquery作者实现  
-lastmod: 2024-03-05  
+lastmod: 2024-03-07  
 share: true  
 ---  
   
@@ -71,7 +71,7 @@ console.log(obj.fn(1, 2));//>> 2 param:1,2
 ```  
   
 #### 解析  
-主要是利用了闭包（closure）,每次调用`overload`方法，都会产生一个`previousHandler`方法，存储上一个方法，形成闭包，使之前的方法都存在与内存中。  
+主要是利用了闭包（[Javascript的闭包](Javascript%E7%9A%84%E9%97%AD%E5%8C%85.md)）,每次调用`overload`方法，都会产生一个`previousHandler`方法，存储上一个方法，形成闭包，使之前的方法都存在与内存中。  
 下面用一张图来清晰的展示：  
 ![overload.jpg](../../static/images/overload.jpg)  
   
