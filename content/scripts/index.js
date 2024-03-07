@@ -116,6 +116,10 @@ function markedHandle(filePath) {
   const flatHeading = [...flatHeadingList]
 
   const vNode = marked.lexer(content)
+  const reg = /<a href=\"(.*)\.md\"/g
+  const htmlFormatLink = html.replace(reg, (str) => {
+    return str.slice(0, str.length - 4) + '"'
+  })
 
   // 获取文章属性
   const firstHeadIndex = vNode.findIndex(
@@ -157,7 +161,7 @@ function markedHandle(filePath) {
   })
 
   return {
-    html,
+    html: htmlFormatLink,
     heading,
     flatHeading,
     ...attributes,
