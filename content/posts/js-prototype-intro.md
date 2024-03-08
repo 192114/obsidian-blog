@@ -7,7 +7,7 @@ tags:
 title: 原型、prototype、__proto__  
 slug: js-prototype-intro  
 keywords: 原型、prototype、__proto__  
-description: 面试,原型,prototype,__proto__,继承,class,extends,原型链  
+description: 面试，原型，prototype，__proto__，继承，class，extends，原型链  
 lastmod: 2024-03-08  
 share: true  
 ---  
