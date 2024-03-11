@@ -4,11 +4,11 @@ series: javascript
 tags:  
   - 面试  
   - javascript  
-title: 原型、prototype、\_\_proto\_\_  
+title: 原型、prototype  
 slug: js-prototype-intro  
 keywords: javascript  
 description: 面试，原型，prototype，继承，class，extends，原型链  
-lastmod: 2024-03-08  
+lastmod: 2024-03-11  
 share: true  
 ---  
   
